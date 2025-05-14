@@ -1,103 +1,186 @@
-import Image from "next/image";
+"use client"
+
+import { useState } from "react"
+import RailwayGraph from "@/components/railway-graph"
+import ColorChanger from "@/components/color-changer"
+import { Button } from "@/components/ui/button"
+import { toast, Toaster } from "sonner"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Calendar } from "@/components/ui/calendar"
+import { CalendarIcon } from "lucide-react"
+import { format } from "date-fns"
+import { cn } from "@/lib/utils"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [selectedElement, setSelectedElement] = useState("")
+  const [newColor, setNewColor] = useState("#FF0000")
+  const [coloredElements, setColoredElements] = useState<Record<string, string>>({})
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null)
+  const [isCatenariasActive, setIsCatenariasActive] = useState(false)
+  const [isCircuitosViasActive, setIsCircuitosViasActive] = useState(false)
+  const [selectedDate, setSelectedDate] = useState<Date>()
+  const [selectedType, setSelectedType] = useState<string>("")
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  const handleColorChange = () => {
+    console.log({
+      ...coloredElements,
+      [selectedElement]: newColor,
+    })
+    if (selectedElement) {
+      setColoredElements({
+        ...coloredElements,
+        [selectedElement]: newColor,
+      })
+    }
+  }
+
+  const handleMouseMove = (x: number, y: number) => {
+    setMousePosition({ x, y })
+  }
+
+  return (
+    <main className="flex min-h-screen flex-col items-start p-4 bg-gray-900">
+      <h1 className="text-2xl font-bold text-white mb-4">Mímico</h1>
+
+      <div className="flex flex-row gap-4">
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline" className={cn(
+      "justify-start text-left font-normal",
+      !selectedDate && "text-muted-foreground"
+    )}>
+      <CalendarIcon className="mr-2 h-4 w-4" />
+      {selectedDate ? format(selectedDate, "PPP") : <span>Seleccionar fecha</span>}
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className="w-auto p-0" align="start">
+    <Calendar
+      mode="single"
+      selected={selectedDate}
+      onSelect={ (date) => {
+        setSelectedDate(date)
+        if(isCatenariasActive) {
+          setColoredElements({})
+          setIsCatenariasActive(false)
+          console.log("desactivando catenarias")
+          return
+        }
+        if(isCircuitosViasActive) {
+          setColoredElements({})
+          setIsCircuitosViasActive(false)
+          console.log("desactivando circuitos de vias")
+          return
+        }
+      }
+      }
+      initialFocus
+    />
+  </PopoverContent>
+</Popover>
+
+<Select>
+<SelectTrigger className="w-[180px] mb-4 text-white">
+  <SelectValue placeholder="Seleccionar tipo" />
+</SelectTrigger>
+<SelectContent>
+  <SelectItem value="comercial" onSelect={() => setSelectedType('comercial')}>COMERCIAL</SelectItem>
+  <SelectItem value="non-comercial" onSelect={() => setSelectedType('non-comercial')}>NON COMERCIAL</SelectItem>
+</SelectContent>
+</Select>
+
+</div>
+
+      <div className="flex flex-row gap-4">
+
+      <Button
+        onClick={async () => {
+          try {
+            if(isCatenariasActive) {
+              setColoredElements({})
+              setIsCatenariasActive(false)
+              return
+            }
+            const formattedDate = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : ''
+            const response = await fetch(`http://localhost:8000/catenarias?date=${formattedDate}&type=${selectedType}`)
+            const data = await response.json()
+            if(data.status === "error") {
+              toast.error("No hay datos disponibles") 
+              return
+            }
+            const newColoredElements = data.message.reduce((acc: Record<string, string>, catenaria: any) => {
+              // Check if element already exists and toggle between active/inactive colors
+              acc[catenaria.symbol] = "#ff5733"
+              return acc
+            }, {})
+            setColoredElements({...coloredElements, ...newColoredElements})
+            setIsCatenariasActive(!isCatenariasActive)
+          } catch (error) {
+            console.error('Failed to fetch labels:', error)
+          }
+        }
+      }
+        className={`font-bold py-2 px-4 rounded mb-4 ${
+          isCatenariasActive
+            ? "bg-green-500 hover:bg-green-700 text-white" // Active state
+            : "bg-gray-500 hover:bg-gray-700 text-white"   // Inactive state
+        }`}
+      >
+        {isCatenariasActive ? "Desactivar Catenarias" : "Activar Catenarias"}
+      </Button>
+
+      <Button
+        onClick={async () => {
+          try {
+            if(isCircuitosViasActive) {
+              setColoredElements({})
+              setIsCircuitosViasActive(false)
+              return
+            }
+            const formattedDate = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : ''
+            const response = await fetch(`http://localhost:8000/circuitos-vias?date=${formattedDate}&type=${selectedType}`)
+            const data = await response.json()
+            if(data.status === "error") {
+              toast.error("No hay datos disponibles")
+              return
+            }
+            const newColoredElements = data.message.reduce((acc: Record<string, string>, catenaria: any) => {
+              // Check if element already exists and toggle between active/inactive colors
+              acc[catenaria.symbol] = "#ff5733"
+              return acc
+            }, {})
+            setColoredElements({...coloredElements, ...newColoredElements})
+            setIsCircuitosViasActive(!isCircuitosViasActive)
+          } catch (error) {
+            console.error('Failed to fetch labels:', error)
+          }
+        }}
+        className={`font-bold py-2 px-4 rounded mb-4 ${
+          isCircuitosViasActive
+            ? "bg-green-500 hover:bg-green-700 text-white" // Active state
+            : "bg-gray-500 hover:bg-gray-700 text-white"   // Inactive state
+        }`}
+      >
+        Circuitos de Vias
+      </Button>
+      </div>
+
+      
+
+      <div className="w-full bg-gray-800 rounded-lg shadow-lg p-4 mb-6">
+        <RailwayGraph coloredElements={coloredElements} onMouseMove={handleMouseMove} />
+      </div>
+
+      <ColorChanger
+        selectedElement={selectedElement}
+        setSelectedElement={setSelectedElement}
+        newColor={newColor}
+        setNewColor={setNewColor}
+        handleColorChange={handleColorChange}
+        mousePosition={mousePosition}
+      />
+      <Toaster />
+    </main>
+  )
 }
