@@ -317,6 +317,7 @@ function validateElements(elements: Element[]): void {
 
 export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGraphProps) {
   const [showGrid, setShowGrid] = useState(false)
+  const [showLabels, setShowLabels] = useState(false)
   
   // Define sequences for each track
   const upperCVSequence: SequenceElement[] = useMemo(() => [
