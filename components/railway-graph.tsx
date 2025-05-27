@@ -17,6 +17,8 @@ const switchInferiorY = 425
 const altoSwitch = 10
 const signalSuperiorY = 220
 const signalSuperiorY2 = 240
+const signalInferiorY = 440
+const signalInferiorY2 = 460
 
 interface RailwayGraphProps {
   coloredElements: Record<string, string>
@@ -233,6 +235,18 @@ const elementsConfigs = {
     defaultElementWidth: 5,
     defaultGap: 50,
     startX: 480
+  },
+  lowerSignal: {
+    y: signalInferiorY,
+    defaultElementWidth: 5,
+    defaultGap: 50,
+    startX: 480
+  },
+  lowerSignal2: {
+    y: signalInferiorY2,
+    defaultElementWidth: 5,
+    defaultGap: 50,
+    startX: 480
   }
 } as const
 
@@ -292,17 +306,17 @@ function validateElements(elements: Element[]): void {
     ids.add(element.id)
 
     // Check for duplicate labels (only if label exists and is not empty)
-    if (element.label && element.label.trim()) {
-      if (labels.has(element.label)) {
-        throw new Error(`Duplicate element label found: ${element.label}`)
-      }
-      labels.add(element.label)
-    }
+    // if (element.label && element.label.trim()) {
+      // if (labels.has(element.label)) {
+        // throw new Error(`Duplicate element label found: ${element.label}`)
+      // }
+      // labels.add(element.label)
+    // }
   })
 }
 
 export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGraphProps) {
-  const [showGrid, setShowGrid] = useState(true)
+  const [showGrid, setShowGrid] = useState(false)
   
   // Define sequences for each track
   const upperCVSequence: SequenceElement[] = useMemo(() => [
@@ -420,70 +434,116 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
   ], [])
 
   const upperCatenariaSequence: SequenceElement[] = useMemo(() => [
-    { id: "C4(2)", type: "catenaria-track", height: altoCatenaria, label: "C4(2)" },
-    { id: "C5(2)", type: "catenaria-track", width: 990, height: altoCatenaria, label: "C5(2)" },
-    { id: "C6(2)", type: "catenaria-track", width: 265, height: altoCatenaria, label: "C6(2)" },
-    { id: "C7(2)", type: "catenaria-track", width: 495, height: altoCatenaria, label: "C7(2)" },
-    { id: "C8(2)", type: "catenaria-track", width: 270, height: altoCatenaria, label: "C8(2)" },
-    { id: "C9(2)", type: "catenaria-track", width: 440, height: altoCatenaria, label: "C9(2)" },
-    { id: "C10(2)", type: "catenaria-track", width: 215, height: altoCatenaria, label: "C10(2)" },
-    { id: "C11(2)", type: "catenaria-track", width: 660, height: altoCatenaria, label: "C11(2)" },
+    { id: "C4(2)", type: "catenaria-track", height: altoCatenaria, label: "C4" },
+    { id: "C5(2)", type: "catenaria-track", width: 990, height: altoCatenaria, label: "C5" },
+    { id: "C6(2)", type: "catenaria-track", width: 265, height: altoCatenaria, label: "C6" },
+    { id: "C7(2)", type: "catenaria-track", width: 495, height: altoCatenaria, label: "C7" },
+    { id: "C8(2)", type: "catenaria-track", width: 270, height: altoCatenaria, label: "C8" },
+    { id: "C9(2)", type: "catenaria-track", width: 440, height: altoCatenaria, label: "C9" },
+    { id: "C10(2)", type: "catenaria-track", width: 215, height: altoCatenaria, label: "C10" },
+    { id: "C11(2)", type: "catenaria-track", width: 660, height: altoCatenaria, label: "C11" },
   ], [])
 
   const upperSwitchSequence: SequenceElement[] = useMemo(() => [
     { id: "A128", type: "switch", height: altoSwitch, width: 100, label: "A128" },
     { id: "A130", type: "switch", height: altoSwitch, width: 50, label: "A130", gap: 105 },
     { id: "A132", type: "switch", height: altoSwitch, width: 50, label: "A132", gap: 160 },
-    { id: "C102", type: "switch", height: altoSwitch, width: 50, label: "C102", gap: 240 },
+    { id: "C102", type: "switch", height: altoSwitch, width: 50, label: "C102", gap: 55 },
+    { id: "SQ102", type: "signal", height: altoSignal, label: "SQ102", width: 5, gap:180 },
     { id: "AQU102", type: "switch", height: altoSwitch, width: 50, label: "AQU102", gap: 105 },
     { id: "AQU104", type: "switch", height: altoSwitch, width: 50, label: "AQU104", gap: 130 },
     { id: "AQU106", type: "switch", height: altoSwitch, width: 50, label: "AQU106", gap: 105 },
-    { id: "AQU108", type: "switch", height: altoSwitch, width: 50, label: "AQU108", gap: 615 },
-    { id: "AMV102", type: "switch", height: altoSwitch, width: 50, label: "AMV102", gap: 615 },
-    { id: "AMV104", type: "switch", height: altoSwitch, width: 50, label: "AMV104", gap: 850 },
-    { id: "ACA102", type: "switch", height: altoSwitch, width: 50, label: "ACA102", gap: 105 },
+    { id: "AQU108", type: "switch", height: altoSwitch, width: 50, label: "AQU108", gap: 225 },
+    { id: "CTV1", type: "ctv", height: altoSwitch, width: 50, label: "CTV1", gap: 335 },
+    { id: "AMV102", type: "switch", height: altoSwitch, width: 50, label: "AMV102", gap: 340},
+    { id: "CTV2", type: "ctv", height: altoSwitch, width: 50, label: "CTV2", gap: 215 },
+    { id: "AMV104", type: "switch", height: altoSwitch, width: 50, label: "AMV104", gap: 400 },
+    { id: "SCA104", type: "signal", height: altoSignal, label: "SCA104", width: 5, gap:435 },
+    { id: "ACA102", type: "switch", height: altoSwitch, width: 50, label: "ACA102", gap: 120 },
+    { id: "SRE106", type: "signal", height: altoSignal, label: "SRE106", width: 5 },
+
   ], [])
 
   const lowerSwitchSequence: SequenceElement[] = useMemo(() => [
-    { id: "A129", type: "switch", height: altoSwitch, width: 100, label: "A129" },
-    { id: "A131", type: "switch", height: altoSwitch, width: 50, label: "A131", gap: 105 },
-    { id: "A133", type: "switch", height: altoSwitch, width: 50, label: "A133", gap: 160 },
-    { id: "C101", type: "switch", height: altoSwitch, width: 50, label: "C101", gap: 240 },
+    { id: "A119", type: "switch", height: altoSwitch, width: 100, label: "A119" },
+    { id: "A121", type: "switch", height: altoSwitch, width: 50, label: "A121", gap: 105 },
+    { id: "A123", type: "switch", height: altoSwitch, width: 50, label: "A123", gap: 160 },
+    { id: "C101", type: "switch", height: altoSwitch, width: 50, label: "C101", gap: 110 },
+    { id: "SQ101", type: "signal", height: altoSignal, label: "SQ101", width: 5, gap:50 },
+    { id: "SQ105", type: "signal", height: altoSignal, label: "SQ105", width: 5, gap:70 },
     { id: "AQU101", type: "switch", height: altoSwitch, width: 50, label: "AQU101", gap: 105 },
     { id: "AQU103", type: "switch", height: altoSwitch, width: 50, label: "AQU103", gap: 130 },
     { id: "AQU105", type: "switch", height: altoSwitch, width: 50, label: "AQU105", gap: 105 },
-    { id: "AQU107", type: "switch", height: altoSwitch, width: 50, label: "AQU107", gap: 615 },
-    { id: "AMV101", type: "switch", height: altoSwitch, width: 50, label: "AMV101", gap: 615 },
-    { id: "AMV103", type: "switch", height: altoSwitch, width: 50, label: "AMV103", gap: 850 },
-    { id: "ACA101", type: "switch", height: altoSwitch, width: 50, label: "ACA101", gap: 105 },
+    { id: "AQU107", type: "switch", height: altoSwitch, width: 50, label: "AQU107", gap: 230 },
+    { id: "CTV3", type: "ctv", height: altoSwitch, width: 50, label: "CTV1", gap: 215 },
+    { id: "SMV105", type: "signal", height: altoSignal, label: "SMV105", width: 5, gap:115},
+    { id: "AMV101", type: "switch", height: altoSwitch, width: 50, label: "AMV101", gap: 340 },
+    { id: "CTV4", type: "ctv", height: altoSwitch, width: 50, label: "CTV2", gap: 215 },
+    { id: "AMV103", type: "switch", height: altoSwitch, width: 50, label: "AMV103", gap: 840 },
+    { id: "ACA101", type: "switch", height: altoSwitch, width: 50, label: "ACA101", gap: 120 },
 
   ], [])
 
   const lowerCatenariaSequence: SequenceElement[] = useMemo(() => [
-    { id: "C4(1)", type: "catenaria-track", height: altoCatenaria, label: "C4(1)" },
-    { id: "C5(1)", type: "catenaria-track", width: 370, height: altoCatenaria, label: "C5(1)" },
-    { id: "C6(1)", type: "catenaria-track", width: 885, height: altoCatenaria, label: "C6(1)" },
-    { id: "C7(1)", type: "catenaria-track", width: 160, height: altoCatenaria, label: "C7(1)" },
-    { id: "C8(1)", type: "catenaria-track", width: 605, height: altoCatenaria, label: "C8(1)" },
-    { id: "C9(1)", type: "catenaria-track", width: 105, height: altoCatenaria, label: "C9(1)" },
-    { id: "C10(1)", type: "catenaria-track", width: 495, height: altoCatenaria, label: "C10(1)" },
-    { id: "C11(1)", type: "catenaria-track", width: 380, height: altoCatenaria, label: "C11(1)" },
-    { id: "C12(1)", type: "catenaria-track", width: 330, height: altoCatenaria, label: "C12(1)" },
+    { id: "C4(1)", type: "catenaria-track", height: altoCatenaria, label: "C4" },
+    { id: "C5(1)", type: "catenaria-track", width: 370, height: altoCatenaria, label: "C5" },
+    { id: "C6(1)", type: "catenaria-track", width: 885, height: altoCatenaria, label: "C6" },
+    { id: "C7(1)", type: "catenaria-track", width: 160, height: altoCatenaria, label: "C7" },
+    { id: "C8(1)", type: "catenaria-track", width: 605, height: altoCatenaria, label: "C8" },
+    { id: "C9(1)", type: "catenaria-track", width: 105, height: altoCatenaria, label: "C9" },
+    { id: "C10(1)", type: "catenaria-track", width: 495, height: altoCatenaria, label: "C10" },
+    { id: "C11(1)", type: "catenaria-track", width: 380, height: altoCatenaria, label: "C11" },
+    { id: "C12(1)", type: "catenaria-track", width: 330, height: altoCatenaria, label: "C12" },
   ], [])
 
   const upperSignalSequence: SequenceElement[] = useMemo(() => [
     { id: "S128", type: "signal", height: altoSignal, label: "S128", gap: 200 },
     { id: "S132", type: "signal", height: altoSignal, label: "S132", gap: 160 },
-    { id: "S134", type: "signal", height: altoSignal, label: "S134" },
-    
+    { id: "S134", type: "signal", height: altoSignal, label: "S134", gap: 1320 },
+    { id: "SMV104", type: "signal", height: altoSignal, label: "SMV104" },
+  ], [])
+
+  const lowerSignalSequence: SequenceElement[] = useMemo(() => [
+    { id: "S129", type: "signal", height: altoSignal, label: "S129", gap: 265 },
+    { id: "S135", type: "signal", height: altoSignal, label: "S135", gap: 50 },
+    { id: "SQ103", type: "signal", height: altoSignal, label: "SQ103", gap: 330 },
+    { id: "SQ107", type: "signal", height: altoSignal, label: "SQ107", gap: 50 },
+    { id: "SQU109", type: "signal", height: altoSignal, label: "SQU109", gap: 275 },
+    { id: "SQU111", type: "signal", height: altoSignal, label: "SQU111", gap: 380 },
+    { id: "SMV101", type: "signal", height: altoSignal, label: "SMV101", gap: 105 },
+    { id: "SMV103", type: "signal", height: altoSignal, label: "SMV103", gap: 275 },
+    { id: "SMV107", type: "signal", height: altoSignal, label: "SMV107", gap:385 },
+    { id: "SSO101", type: "signal", height: altoSignal, label: "SSO101", gap: 270 },
+    { id: "SSO103", type: "signal", height: altoSignal, label: "SSO103", gap: 50 },
+    { id: "SSO105", type: "signal", height: altoSignal, label: "SSO105", gap: 215 },
+    { id: "SCA101", type: "signal", height: altoSignal, label: "SCA101", gap: 325 },
+    { id: "SRE101", type: "signal", height: altoSignal, label: "SRE101", gap: 275 },
+
   ], [])
 
   const upperSignalSequence2: SequenceElement[] = useMemo(() => [
     { id: "S130", type: "signal", height: altoSignal, label: "S130", gap: 210 },
     { id: "S136", type: "signal", height: altoSignal, label: "S136" },
-    { id: "SQU104", type: "signal", height: altoSignal, label: "SQU104" },
+    { id: "SQU104", type: "signal", height: altoSignal, label: "SQU104", gap:385 },
     { id: "SQU108", type: "signal", height: altoSignal, label: "SQU108" },
+    { id: "SQU110", type: "signal", height: altoSignal, label: "SQU110", gap:275 },
+    { id: "SQU112", type: "signal", height: altoSignal, label: "SQU112",gap: 435 },
+    { id: "SMV102", type: "signal", height: altoSignal, label: "SMV102", gap:335 },
+    { id: "SMV106", type: "signal", height: altoSignal, label: "SMV106", gap:375 },
+    { id: "SSO102", type: "signal", height: altoSignal, label: "SSO102", gap:275 },
+    { id: "SSO104", type: "signal", height: altoSignal, label: "SSO104", gap:215 },
+    { id: "SCA102", type: "signal", height: altoSignal, label: "SCA102", gap:105	 },
+    { id: "SCA106", type: "signal", height: altoSignal, label: "SCA106", gap:270 },
+    { id: "SRE102", type: "signal", height: altoSignal, label: "SRE102", gap:275 },
+    { id: "SRE104", type: "signal", height: altoSignal, label: "SRE104" },
   ], [])
+
+  const lowerSignalSequence2: SequenceElement[] = useMemo(() => [
+    { id: "S131", type: "signal", height: altoSignal, label: "S131", gap: 160 },
+    { id: "S133", type: "signal", height: altoSignal, label: "S133", gap: 45 },
+  ], [])
+
+  
 
   // Calculate positions for all elements
   const elements = useMemo<Element[]>(() => {
@@ -582,9 +642,17 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
       ...calculatePositions(lowerSwitchSequence, elementsConfigs.lowerSwitch, altoSwitch),
       ...calculatePositions(upperSignalSequence, elementsConfigs.upperSignal, altoSignal),
       ...calculatePositions(upperSignalSequence2, elementsConfigs.upperSignal2, altoSignal),
-      // Track crossings
-      { id: "CROSSING_1", type: "crossing", x: 300, y: 325, width: 100, height: 40 },
-      { id: "CROSSING_2", type: "crossing", x: 1250, y: 325, width: 100, height: 40 },
+      ...calculatePositions(lowerSignalSequence, elementsConfigs.lowerSignal, altoSignal),
+      ...calculatePositions(lowerSignalSequence2, elementsConfigs.lowerSignal2, altoSignal),
+
+      { id: "FINRECREO", type: "station", x: 3875, y: 316, width: 100, height: 60, label: "FIN DE\nESTACIÓN RECREO" },
+
+
+      // // Track crossings
+      // { id: "CROSSING_1", type: "crossing", x: 300, y: 325, width: 100, height: 40 },
+      // { id: "CROSSING_2", type: "crossing", x: 1250, y: 325, width: 100, height: 40 },
+      // { id: "CROSSING_3", type: "crossing", x: 1300, y: 325, width: 100, height: 40 },
+      // { id: "CROSSING_4", type: "crossing", x: 1250, y: 325, width: 100, height: 40 },
     ]
 
     validateElements(elementsList)
@@ -940,6 +1008,33 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
             )
           }
 
+          if (element.type === "ctv") {
+            return (
+              <div
+                key={element.id}
+                className="absolute"
+                style={{
+                  left: element.x,
+                  top: element.y,
+                  width: element.width,
+                  height: element.height,
+                  backgroundColor: "transparent",
+                  zIndex: getZIndex(element.type),
+                  border: getBorder(element.type),
+                  color: "white",
+                  fontSize: "10px",
+                  textAlign: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0 4px",
+                }}
+              >
+                    {element.label}
+              </div>
+            )
+          }
+
           return (
             <div
               key={element.id}
@@ -978,7 +1073,20 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
           {generateXCrossing(935, 312.5).map((path, index) => (
             <path key={`x2-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
+          {generateXCrossing(1275, 312.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+          {generateX1Crossing(2090, 312.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+          {generateX1Crossing(2750, 312.5).map((path, index) => (
+              <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+            ))}
+          {generateX1Crossing(3635, 312.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
         </svg>
+        
 
         {/* <div className="absolute bottom-2 left-2 z-50 bg-gray-800 p-2 rounded text-xs text-white">
           <div className="font-bold mb-1">Composite Objects:</div>
@@ -1022,6 +1130,8 @@ function getDefaultColor(type: string): string {
 
 function getBorder(type: string): string {
   switch (type) {
+    case "ctv":
+      return "0px solid #FFFFFF"
     case "station":
       return "0px solid #FFFFFF"
     case "block":
@@ -1051,6 +1161,8 @@ function getTextColor(type: string): string {
       return "#FFFFFF"
     case "connector":
       return "#000000"
+    case "catenaria-track":
+      return "#FFFFFF"
     default:
       return "#000000"
   }
@@ -1093,5 +1205,18 @@ function generateXCrossing(startX: number, startY: number, width: number = 205, 
   return [
     `M${startX},${topY} C${controlPoint1X},${topY} ${controlPoint2X},${bottomY} ${endX},${bottomY}`,
     `M${startX},${bottomY} C${controlPoint1X},${bottomY} ${controlPoint2X},${topY} ${endX},${topY}`
+  ];
+}
+
+function generateX1Crossing(startX: number, startY: number, width: number = 205, height: number = 75): string[] {
+  const endX = startX + width;
+  const topY = startY;
+  const bottomY = startY + height;
+  
+  const controlPoint1X = startX + (width * 0.3);
+  const controlPoint2X = startX + (width * 0.7);
+  
+  return [
+    `M${startX},${topY} C${controlPoint1X},${topY} ${controlPoint2X-50},${bottomY} ${endX-60},${bottomY}`,
   ];
 }
