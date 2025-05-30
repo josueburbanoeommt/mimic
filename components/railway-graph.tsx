@@ -2,27 +2,11 @@
 
 import { useMemo, useState } from "react"
 
-const circuitoViasParteSuperiorY = 275
-const circuitoViasParteInferiorY = 400
-const altoCatenaria = 15
-const altoCircuitoVias = 25
-const altoTrack = 7.5
-const altoSignal = 20
-const trackSuperiorY = 310
-const trackInferiorY = 382.5
-const catenariaSuperiorY = 332.5
-const catenariaInferiorY = 352.5
-const switchSuperiorY = 265
-const switchInferiorY = 425
-const altoSwitch = 10
-const signalSuperiorY = 220
-const signalSuperiorY2 = 240
-const signalInferiorY = 440
-const signalInferiorY2 = 460
+import { upperCVSequence_part1, upperCVSequence_part2, lowerCVSequence_part1, lowerCVSequence_part2 } from '../lib/data/railway-data'
+
 
 interface RailwayGraphProps {
   coloredElements: Record<string, string>
-  onMouseMove?: (x: number, y: number) => void
 }
 
 type LabelPosition = "start" | "center" | "end"
@@ -175,78 +159,185 @@ function generatePozosWithBlocks(config: StationConfig): Element[] {
   ]
 }
 
-const elementsConfigs = {
+const altoCatenaria = 15
+const altoTrack = 7.5
+const altoSignal = 20
+const altoSwitch = 10
+const altoCircuitoVias = 25
+
+const circuitoViasParteSuperiorY_part1 = 275
+const circuitoViasParteInferiorY_part1 = 400
+const trackSuperiorY_part1 = 310
+const trackInferiorY_part1 = 382.5
+const catenariaSuperiorY_part1 = 332.5
+const catenariaInferiorY_part1 = 352.5
+const switchSuperiorY_part1 = 265
+const switchInferiorY_part1 = 425
+const signalSuperiorY_part1 = 220
+const signalSuperiorY2_part1 = 240
+const signalInferiorY_part1 = 440
+const signalInferiorY2_part1 = 460
+
+const elementsConfigs_part1 = {
   upperCircuitoVias: {
-    y: circuitoViasParteSuperiorY,
+    y: circuitoViasParteSuperiorY_part1,
     defaultElementWidth: 50,
     defaultGap: 5,
     startX: 175
   },
   lowerCircuitoVias: {
-    y: circuitoViasParteInferiorY,
+    y: circuitoViasParteInferiorY_part1,
     defaultElementWidth: 50,
     defaultGap: 5,
     startX: 175
   },
   upperTrack: {
-    y: trackSuperiorY,
+    y: trackSuperiorY_part1,
     defaultElementWidth: 310,
     defaultGap: 5,
     startX: 175
   },
   lowerTrack: {
-    y: trackInferiorY,
+    y: trackInferiorY_part1,
     defaultElementWidth: 310,
     defaultGap: 5,
     startX: 175
   },
   upperCatenaria: {
-    y: catenariaSuperiorY,
+    y: catenariaSuperiorY_part1,
     defaultElementWidth: 310,
     defaultGap: 5,
     startX: 175
   },
   lowerCatenaria: {
-    y: catenariaInferiorY,
+    y: catenariaInferiorY_part1,
     defaultElementWidth: 310,
     defaultGap: 5,
     startX: 175
   },
   upperSwitch: {
-    y: switchSuperiorY,
+    y: switchSuperiorY_part1,
     defaultElementWidth: 100,
     defaultGap: 5,
     startX: 175
   },
   lowerSwitch: {
-    y: switchInferiorY,
+    y: switchInferiorY_part1,
     defaultElementWidth: 100,
     defaultGap: 5,
     startX: 175
   },
   upperSignal: {
-    y: signalSuperiorY,
+    y: signalSuperiorY_part1,
     defaultElementWidth: 5,
     defaultGap: 50,
     startX: 275,
   },
   upperSignal2: {
-    y: signalSuperiorY2,
+    y: signalSuperiorY2_part1,
     defaultElementWidth: 5,
     defaultGap: 50,
     startX: 480
   },
   lowerSignal: {
-    y: signalInferiorY,
+    y: signalInferiorY_part1,
     defaultElementWidth: 5,
     defaultGap: 50,
     startX: 480
   },
   lowerSignal2: {
-    y: signalInferiorY2,
+    y: signalInferiorY2_part1,
+    defaultElementWidth: 5,
+    defaultGap: 50,
+    startX: 280
+  }
+} as const
+
+const circuitoViasParteSuperiorY_part2 = 700
+const circuitoViasParteInferiorY_part2 = 825
+const trackSuperiorY_part2 = 730
+const trackInferiorY_part2 = 802.5
+const catenariaSuperiorY_part2 = 752.5
+const catenariaInferiorY_part2 = 772.5
+const switchSuperiorY_part2 = 690
+const switchInferiorY_part2 = 850
+const signalSuperiorY_part2 = 650
+const signalSuperiorY2_part2 = 670
+const signalInferiorY_part2 = 860
+const signalInferiorY2_part2 = 860
+
+const elementsConfigs_part2 = {
+  upperCircuitoVias: {
+    y: circuitoViasParteSuperiorY_part2,
+    defaultElementWidth: 50,
+    defaultGap: 5,
+    startX: 400
+  },
+  lowerCircuitoVias: {
+    y: circuitoViasParteInferiorY_part2,
+    defaultElementWidth: 50,
+    defaultGap: 5,
+    startX: 400
+  },
+  upperTrack: {
+    y: trackSuperiorY_part2,
+    defaultElementWidth: 310,
+    defaultGap: 5,
+    startX: 400
+  },
+  lowerTrack: {
+    y: trackInferiorY_part2,
+    defaultElementWidth: 310,
+    defaultGap: 5,
+    startX: 400
+  },
+  upperCatenaria: {
+    y: catenariaSuperiorY_part2,
+    defaultElementWidth: 310,
+    defaultGap: 5,
+    startX: 400
+  },
+  lowerCatenaria: {
+    y: catenariaInferiorY_part2,
+    defaultElementWidth: 310,
+    defaultGap: 5,
+    startX: 400
+  },
+  upperSwitch: {
+    y: switchSuperiorY_part2,
+    defaultElementWidth: 100,
+    defaultGap: 5,
+    startX: 400
+  },
+  lowerSwitch: {
+    y: switchInferiorY_part2,
+    defaultElementWidth: 100,
+    defaultGap: 5,
+    startX: 400
+  },
+  upperSignal: {
+    y: signalSuperiorY_part2,
+    defaultElementWidth: 5,
+    defaultGap: 50,
+    startX: 275,
+  },
+  upperSignal2: {
+    y: signalSuperiorY2_part2,
+    defaultElementWidth: 5,
+    defaultGap: 50,
+    startX: 675
+  },
+  lowerSignal: {
+    y: signalInferiorY_part2,
     defaultElementWidth: 5,
     defaultGap: 50,
     startX: 480
+  },
+  lowerSignal2: {
+    y: signalInferiorY2_part2,
+    defaultElementWidth: 5,
+    defaultGap: 50,
+    startX: 675
   }
 } as const
 
@@ -315,11 +406,11 @@ function validateElements(elements: Element[]): void {
   })
 }
 
-export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGraphProps) {
+export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
   const [showGrid, setShowGrid] = useState(false)
   
   // Define sequences for each track
-  const upperCVSequence: SequenceElement[] = useMemo(() => [
+  const upperCVSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "CV154", type: "block", width: 100, label: "CV154" },
     { id: "CV156", type: "block", width: 205, label: "CV156" },
     { id: "CV158", type: "block", width: 205, label: "CV158" },
@@ -362,7 +453,52 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
     { id: "CVRE102", type: "block", label: "CVRE102" },
   ], [])
 
-  const lowerCVSequence: SequenceElement[] = useMemo(() => [
+  const upperCVSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "CVRE104", type: "block", width: 275, label: "CVRE104" },
+    { id: "CVRE106", type: "block", label: "CVRE106" },
+    { id: "CVRE108", type: "block", label: "CVRE108" },
+    { id: "CVRE110", type: "block", label: "CVRE110"}, // Custom gap after CV160
+    { id: "CVRE112", type: "block", label: "CVRE112" },
+    { id: "CVRE114", type: "block", label: "CVRE114" },
+    { id: "CVRE116", type: "block", label: "CVRE116" },
+    { id: "CVRE118", type: "block", label: "CVRE118" },
+    { id: "CVRE120", type: "block", label: "CVRE120" },
+    { id: "CVMA102", type: "block", label: "CVMA102" },
+    { id: "CVMA104", type: "block", label: "CVMA104", width: 275 },
+    { id: "CVMA106", type: "block", label: "CVMA106" },
+    { id: "CVMA108", type: "block", label: "CVMA108" },
+    { id: "CVMA110", type: "block", label: "CVMA110" },
+    { id: "CVMA112", type: "block", label: "CVMA112" },
+    { id: "CVMA114", type: "block", label: "CVMA114" },
+    { id: "CVMA116", type: "block", label: "CVMA116" },
+    { id: "CVMA118", type: "block", label: "CVMA118" },
+    { id: "CVSF104", type: "block", label: "CVSF104" },
+    { id: "CVSF106", type: "block", label: "CVSF106" },
+    { id: "CVSF108", type: "block", label: "CVSF108", width: 275 },
+    { id: "CVSF102", type: "block", label: "CVSF102" },
+    { id: "CVSF110", type: "block", label: "CVSF110" },
+    { id: "CVSF112", type: "block", label: "CVSF112" },
+    { id: "CVSF114", type: "block", label: "CVSF114" },
+    { id: "CVSF116", type: "block", label: "CVSF116" },
+    { id: "CVSF118", type: "block", label: "CVSF118" },
+    { id: "CVSF120", type: "block", label: "CVSF120" },
+    { id: "CVSF122", type: "block", label: "CVSF122" },
+    { id: "CVSF124", type: "block", label: "CVSF124" },
+    { id: "CVSF126", type: "block", label: "CVSF126" },
+    { id: "CVAL102", type: "block", label: "CVAL102" },
+    { id: "CVAL104", type: "block", label: "CVAL104", width: 205 },
+    { id: "CVAL106", type: "block", label: "CVAL106" },
+    { id: "CVAL108", type: "block", label: "CVAL108" },
+    { id: "CVAL110", type: "block", label: "CVAL110" },
+    { id: "CVAL112", type: "block", label: "CVAL112" },
+    { id: "CVEJ102", type: "block", label: "CVEJ102" },
+    { id: "CVEJ104", type: "block", label: "CVEJ104" },
+    { id: "CVEJ106", type: "block", label: "CVEJ106" },
+    { id: "CVEJ108", type: "block", label: "CVEJ108" },
+    { id: "CVEJ110", type: "block", label: "CVEJ110" },
+  ], [])
+
+  const lowerCVSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "CV129", type: "block", width: 100, label: "CV129" },
     { id: "CV131", type: "block", width: 205, label: "CV131" },
     { id: "CV133", type: "block", width: 205, label: "CV133" },
@@ -405,7 +541,11 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
     { id: "CVRE101", type: "block", label: "CVRE101" },
   ], [])
 
-  const upperTrackSequence: SequenceElement[] = useMemo(() => [
+  const raywailSequence: SequenceElement[] = useMemo(() => [
+      ...lowerCVSequence_part2,
+  ], [])
+
+  const upperTrackSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "TRACK_2", type: "track", height: altoTrack },
       { id: "TRACK_4", type: "track", height: altoTrack, width: 650 },
       { id: "TRACK_6", type: "track", height: altoTrack, width: 50 },
@@ -420,7 +560,20 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
       
   ], [])
 
-  const lowerTrackSequence: SequenceElement[] = useMemo(() => [
+  const upperTrackSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "TRACK_22", type: "track", height: altoTrack, width: 715 },
+      { id: "TRACK_24", type: "track", height: altoTrack, width: 50 },
+      { id: "TRACK_26", type: "track", height: altoTrack, width: 1050 },
+      { id: "TRACK_28", type: "track", height: altoTrack, width: 50 },
+      { id: "TRACK_30", type: "track", height: altoTrack, width: 490 },
+      { id: "TRACK_32", type: "track", height: altoTrack, width: 50 },
+      { id: "TRACK_34", type: "track", height: altoTrack, width: 425 },
+      { id: "TRACK_36", type: "track", height: altoTrack, width: 50 },
+      { id: "TRACK_38", type: "track", height: altoTrack, width: 215 },
+      
+  ], [])
+
+  const lowerTrackSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "TRACK_1", type: "track", height: altoTrack },
     { id: "TRACK_3", type: "track", height: altoTrack, width: 650 },
     { id: "TRACK_5", type: "track", height: altoTrack, width: 50 },
@@ -433,7 +586,21 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
     { id: "TRACK_19", type: "track", height: altoTrack, width: 50 },
   ], [])
 
-  const upperCatenariaSequence: SequenceElement[] = useMemo(() => [
+  const lowerTrackSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "TRACK_21", type: "track", height: altoTrack, width: 715 },
+    { id: "TRACK_23", type: "track", height: altoTrack, width: 50 },
+    { id: "TRACK_25", type: "track", height: altoTrack, width: 1050 },
+    { id: "TRACK_27", type: "track", height: altoTrack, width: 50 },
+    { id: "TRACK_29", type: "track", height: altoTrack, width: 490 },
+    { id: "TRACK_31", type: "track", height: altoTrack, width: 50 },
+    { id: "TRACK_33", type: "track", height: altoTrack, width: 425 },
+    { id: "TRACK_35", type: "track", height: altoTrack, width: 50 },
+    { id: "TRACK_37", type: "track", height: altoTrack, width: 220 },
+  ], [])
+
+ 
+
+  const upperCatenariaSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "C4(2)", type: "catenaria-track", height: altoCatenaria, label: "C4" },
     { id: "C5(2)", type: "catenaria-track", width: 990, height: altoCatenaria, label: "C5" },
     { id: "C6(2)", type: "catenaria-track", width: 265, height: altoCatenaria, label: "C6" },
@@ -444,7 +611,42 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
     { id: "C11(2)", type: "catenaria-track", width: 660, height: altoCatenaria, label: "C11" },
   ], [])
 
-  const upperSwitchSequence: SequenceElement[] = useMemo(() => [
+  const upperCatenariaSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "C11(2)-1", type: "catenaria-track", height: altoCatenaria, label: "C11", width: 275 },
+    { id: "C12(2)", type: "catenaria-track", width: 105, height: altoCatenaria, label: "C12" },
+    { id: "C13(2)", type: "catenaria-track", width: 662.5, height: altoCatenaria, label: "C13" },
+    { id: "C14(2)", type: "catenaria-track", width: 162.5, height: altoCatenaria, label: "C14" },
+    { id: "C15(2)", type: "catenaria-track", width: 655, height: altoCatenaria, label: "C15" },
+    { id: "C16(2)", type: "catenaria-track", width: 272.5, height: altoCatenaria, label: "C16" },
+    { id: "C17(2)", type: "catenaria-track", width: 480, height: altoCatenaria, label: "C17" },
+    { id: "C18(2)", type: "catenaria-track", width: 272.5, height: altoCatenaria, label: "C18" },
+    { id: "C19(2)", type: "catenaria-track", width: 210, height: altoCatenaria, label: "C19" },
+  ], [])
+
+  const lowerCatenariaSequence_part1: SequenceElement[] = useMemo(() => [
+    { id: "C4(1)", type: "catenaria-track", height: altoCatenaria, label: "C4" },
+    { id: "C5(1)", type: "catenaria-track", width: 370, height: altoCatenaria, label: "C5" },
+    { id: "C6(1)", type: "catenaria-track", width: 885, height: altoCatenaria, label: "C6" },
+    { id: "C7(1)", type: "catenaria-track", width: 160, height: altoCatenaria, label: "C7" },
+    { id: "C8(1)", type: "catenaria-track", width: 605, height: altoCatenaria, label: "C8" },
+    { id: "C9(1)", type: "catenaria-track", width: 105, height: altoCatenaria, label: "C9" },
+    { id: "C10(1)", type: "catenaria-track", width: 495, height: altoCatenaria, label: "C10" },
+    { id: "C11(1)", type: "catenaria-track", width: 380, height: altoCatenaria, label: "C11" },
+    { id: "C12(1)", type: "catenaria-track", width: 330, height: altoCatenaria, label: "C12" },
+  ], [])
+
+  const lowerCatenariaSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "C12(1)-1", type: "catenaria-track", height: altoCatenaria, label: "C12", width: 385 },
+    { id: "C13(1)", type: "catenaria-track", width: 325, height: altoCatenaria, label: "C13" },
+    { id: "C14(1)", type: "catenaria-track", width: 500, height: altoCatenaria, label: "C14" },
+    { id: "C15(1)", type: "catenaria-track", width: 325, height: altoCatenaria, label: "C15" },
+    { id: "C16(1)", type: "catenaria-track", width: 602.5, height: altoCatenaria, label: "C16" },
+    { id: "C17(1)", type: "catenaria-track", width: 215, height: altoCatenaria, label: "C17" },
+    { id: "C18(1)", type: "catenaria-track", width: 480, height: altoCatenaria, label: "C18" },
+    { id: "C19(1)", type: "catenaria-track", width: 267.5, height: altoCatenaria, label: "C19" },
+  ], [])
+
+  const upperSwitchSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "A128", type: "switch", height: altoSwitch, width: 100, label: "A128" },
     { id: "A130", type: "switch", height: altoSwitch, width: 50, label: "A130", gap: 105 },
     { id: "A132", type: "switch", height: altoSwitch, width: 50, label: "A132", gap: 160 },
@@ -460,11 +662,26 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
     { id: "AMV104", type: "switch", height: altoSwitch, width: 50, label: "AMV104", gap: 400 },
     { id: "SCA104", type: "signal", height: altoSignal, label: "SCA104", width: 5, gap:435 },
     { id: "ACA102", type: "switch", height: altoSwitch, width: 50, label: "ACA102", gap: 120 },
-    { id: "SRE106", type: "signal", height: altoSignal, label: "SRE106", width: 5 },
+    { id: "SRE106-1", type: "signal", height: altoSignal, label: "SRE106", width: 5 },
 
   ], [])
 
-  const lowerSwitchSequence: SequenceElement[] = useMemo(() => [
+  const upperSwitchSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "SRE106", type: "signal", height: altoSignal, label: "SRE106", width: 5, gap:80 },
+    { id: "ARE102", type: "switch", height: altoSwitch, width: 100, label: "ARE102", gap: 205 },
+    { id: "CTV5-1", type: "ctv", height: altoSwitch, width: 50, label: "CTV5", gap: 330 },
+    { id: "SMA104", type: "signal", height: altoSignal, label: "SMA104", width: 5, gap: 115 },
+    { id: "AMA102", type: "switch", height: altoSwitch, width: 50, label: "AMA102", gap: 280 },
+    { id: "CTV6-1", type: "ctv", height: altoSwitch, width: 50, label: "CTV6", gap: 390 },
+    { id: "ASF102", type: "switch", height: altoSwitch, width: 50, label: "ASF102", gap: 450 },
+    { id: "CTV7-1", type: "ctv", height: altoSwitch, width: 50, label: "CTV7", gap: 220 },
+    { id: "SAL104", type: "signal", height: altoSignal, label: "SAL104", width: 5, gap:80 },
+    { id: "AAL102", type: "switch", height: altoSwitch, width: 50, label: "AAL102", gap: 300 },
+  ], [])
+
+  
+
+  const lowerSwitchSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "A119", type: "switch", height: altoSwitch, width: 100, label: "A119" },
     { id: "A121", type: "switch", height: altoSwitch, width: 50, label: "A121", gap: 105 },
     { id: "A123", type: "switch", height: altoSwitch, width: 50, label: "A123", gap: 160 },
@@ -484,26 +701,43 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
 
   ], [])
 
-  const lowerCatenariaSequence: SequenceElement[] = useMemo(() => [
-    { id: "C4(1)", type: "catenaria-track", height: altoCatenaria, label: "C4" },
-    { id: "C5(1)", type: "catenaria-track", width: 370, height: altoCatenaria, label: "C5" },
-    { id: "C6(1)", type: "catenaria-track", width: 885, height: altoCatenaria, label: "C6" },
-    { id: "C7(1)", type: "catenaria-track", width: 160, height: altoCatenaria, label: "C7" },
-    { id: "C8(1)", type: "catenaria-track", width: 605, height: altoCatenaria, label: "C8" },
-    { id: "C9(1)", type: "catenaria-track", width: 105, height: altoCatenaria, label: "C9" },
-    { id: "C10(1)", type: "catenaria-track", width: 495, height: altoCatenaria, label: "C10" },
-    { id: "C11(1)", type: "catenaria-track", width: 380, height: altoCatenaria, label: "C11" },
-    { id: "C12(1)", type: "catenaria-track", width: 330, height: altoCatenaria, label: "C12" },
+  const lowerSwitchSequence_part2: SequenceElement[] = useMemo(() => [
+    { id: "SRE105", type: "signal", height: altoSignal, label: "SRE105", width: 5, gap:80 },
+    { id: "ARE101", type: "switch", height: altoSwitch, width: 100, label: "ARE101", gap: 205 },
+    { id: "CTV5", type: "ctv", height: altoSwitch, width: 50, label: "CTV5", gap: 330 },
+    { id: "SMA105", type: "signal", height: altoSignal, label: "SMA105", width: 5, gap:445 },
+    { id: "CTV6-2", type: "ctv", height: altoSwitch, width: 50, label: "CTV6", gap: 390 },
+    { id: "ASF101", type: "switch", height: altoSwitch, width: 50, label: "ASF101", gap: 170 },
+    { id: "SSF105", type: "signal", height: altoSignal, label: "SSF105", width: 5, gap:275 },
+    { id: "CTV7", type: "ctv", height: altoSwitch, width: 50, label: "CTV7", gap: 220 },
+    { id: "SAL103", type: "signal", height: altoSignal, label: "SAL103", width: 5, gap:80 },
+    { id: "AAL101", type: "switch", height: altoSwitch, width: 50, label: "AAL101", gap: 350 },
+    { id: "SEJ103", type: "signal", height: altoSignal, label: "SEJ103", width: 5 },
   ], [])
 
-  const upperSignalSequence: SequenceElement[] = useMemo(() => [
+  
+
+  const upperSignalSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "S128", type: "signal", height: altoSignal, label: "S128", gap: 200 },
     { id: "S132", type: "signal", height: altoSignal, label: "S132", gap: 160 },
     { id: "S134", type: "signal", height: altoSignal, label: "S134", gap: 1320 },
     { id: "SMV104", type: "signal", height: altoSignal, label: "SMV104" },
   ], [])
 
-  const lowerSignalSequence: SequenceElement[] = useMemo(() => [
+  const upperSignalSequence2_part2: SequenceElement[] = useMemo(() => [
+    { id: "SRE108", type: "signal", height: altoSignal, label: "SRE108", gap: 435 },
+    { id: "SMA102", type: "signal", height: altoSignal, label: "SMA102", gap: 330 },
+    { id: "SMA106", type: "signal", height: altoSignal, label: "SMA106", gap: 490 },
+    { id: "SSF102", type: "signal", height: altoSignal, label: "SSF102", gap: 275 },
+    { id: "SSF104", type: "signal", height: altoSignal, label: "SSF104", gap: 105 },
+    { id: "SSF106", type: "signal", height: altoSignal, label: "SSF106", gap: 435 },
+    { id: "SAL102", type: "signal", height: altoSignal, label: "SAL102", gap: 260 },
+    { id: "SAL106", type: "signal", height: altoSignal, label: "SAL106", gap: 215 },
+    { id: "SEJ102", type: "signal", height: altoSignal, label: "SEJ102", gap: 265 },
+    { id: "SUC102", type: "signal", height: altoSignal, label: "SUC102" },
+  ], [])
+
+  const lowerSignalSequence_part1: SequenceElement[] = useMemo(() => [
     { id: "S129", type: "signal", height: altoSignal, label: "S129", gap: 265 },
     { id: "S135", type: "signal", height: altoSignal, label: "S135", gap: 50 },
     { id: "SQ103", type: "signal", height: altoSignal, label: "SQ103", gap: 330 },
@@ -521,7 +755,7 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
 
   ], [])
 
-  const upperSignalSequence2: SequenceElement[] = useMemo(() => [
+  const upperSignalSequence2_part1: SequenceElement[] = useMemo(() => [
     { id: "S130", type: "signal", height: altoSignal, label: "S130", gap: 210 },
     { id: "S136", type: "signal", height: altoSignal, label: "S136" },
     { id: "SQU104", type: "signal", height: altoSignal, label: "SQU104", gap:385 },
@@ -538,17 +772,35 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
     { id: "SRE104", type: "signal", height: altoSignal, label: "SRE104" },
   ], [])
 
-  const lowerSignalSequence2: SequenceElement[] = useMemo(() => [
+
+
+  const lowerSignalSequence2_part1: SequenceElement[] = useMemo(() => [
+    { id: "S127", type: "signal", height: altoSignal, label: "S127", gap: 195 },
     { id: "S131", type: "signal", height: altoSignal, label: "S131", gap: 160 },
     { id: "S133", type: "signal", height: altoSignal, label: "S133", gap: 45 },
   ], [])
+
+  const lowerSignalSequence2_part2: SequenceElement[] = useMemo(() => [
+    { id: "SRE107", type: "signal", height: altoSignal, label: "SRE107", gap: 380 },
+    { id: "SMA101", type: "signal", height: altoSignal, label: "SMA101", gap: 50 },
+    { id: "SMA103", type: "signal", height: altoSignal, label: "SMA103", gap: 330 },
+    { id: "SMA107", type: "signal", height: altoSignal, label: "SMA107", gap: 490 },
+    { id: "SSF101", type: "signal", height: altoSignal, label: "SSF101", gap: 275 },
+    { id: "SSF103", type: "signal", height: altoSignal, label: "SSF103", gap: 490 },
+    { id: "SAL101", type: "signal", height: altoSignal, label: "SAL101", gap: 315 },
+    { id: "SAL105", type: "signal", height: altoSignal, label: "SAL105", gap: 215 },
+    { id: "SEJ101", type: "signal", height: altoSignal, label: "SEJ101", gap: 265 },
+  ], [])
+
+
 
   
 
   // Calculate positions for all elements
   const elements = useMemo<Element[]>(() => {
     const elementsList: Element[] = [
-      // Stations
+      //First part of the graph
+
       { id: "TYC", type: "station", x: 40, y: 316, width: 100, height: 60, label: "TYC\nPLAYA DE VIAS" },
       { id: "TYC1", type: "stationBlock", x: 75, y: 300, width: 80, height: 10 },
       { id: "TYC2", type: "stationBlock", x: 145, y: 300, width: 10, height: 100 },
@@ -632,32 +884,147 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
       
 
       // Generate positions for upper and lower tracks
-      ...calculatePositions(upperCVSequence, elementsConfigs.upperCircuitoVias, altoCircuitoVias),
-      ...calculatePositions(lowerCVSequence, elementsConfigs.lowerCircuitoVias, altoCircuitoVias),
-      ...calculatePositions(upperTrackSequence, elementsConfigs.upperTrack, altoTrack),
-      ...calculatePositions(lowerTrackSequence, elementsConfigs.lowerTrack, altoTrack),
-      ...calculatePositions(upperCatenariaSequence, elementsConfigs.upperCatenaria, altoCatenaria),
-      ...calculatePositions(lowerCatenariaSequence, elementsConfigs.lowerCatenaria, altoCatenaria),
-      ...calculatePositions(upperSwitchSequence, elementsConfigs.upperSwitch, altoSwitch),
-      ...calculatePositions(lowerSwitchSequence, elementsConfigs.lowerSwitch, altoSwitch),
-      ...calculatePositions(upperSignalSequence, elementsConfigs.upperSignal, altoSignal),
-      ...calculatePositions(upperSignalSequence2, elementsConfigs.upperSignal2, altoSignal),
-      ...calculatePositions(lowerSignalSequence, elementsConfigs.lowerSignal, altoSignal),
-      ...calculatePositions(lowerSignalSequence2, elementsConfigs.lowerSignal2, altoSignal),
+      ...calculatePositions(upperCVSequence_part1, elementsConfigs_part1.upperCircuitoVias, altoCircuitoVias),
+      ...calculatePositions(lowerCVSequence_part1, elementsConfigs_part1.lowerCircuitoVias, altoCircuitoVias),
+      ...calculatePositions(upperTrackSequence_part1, elementsConfigs_part1.upperTrack, altoTrack),
+      ...calculatePositions(lowerTrackSequence_part1, elementsConfigs_part1.lowerTrack, altoTrack),
+      ...calculatePositions(upperCatenariaSequence_part1, elementsConfigs_part1.upperCatenaria, altoCatenaria),
+      ...calculatePositions(lowerCatenariaSequence_part1, elementsConfigs_part1.lowerCatenaria, altoCatenaria),
+      ...calculatePositions(upperSwitchSequence_part1, elementsConfigs_part1.upperSwitch, altoSwitch),
+      ...calculatePositions(lowerSwitchSequence_part1, elementsConfigs_part1.lowerSwitch, altoSwitch),
+      ...calculatePositions(upperSignalSequence_part1, elementsConfigs_part1.upperSignal, altoSignal),
+      ...calculatePositions(upperSignalSequence2_part1, elementsConfigs_part1.upperSignal2, altoSignal),
+      ...calculatePositions(lowerSignalSequence_part1, elementsConfigs_part1.lowerSignal, altoSignal),
+      ...calculatePositions(lowerSignalSequence2_part1, elementsConfigs_part1.lowerSignal2, altoSignal),
 
       { id: "FINRECREO", type: "station", x: 3875, y: 316, width: 100, height: 60, label: "FIN DE\nESTACIÓN RECREO" },
 
-
-      // // Track crossings
-      // { id: "CROSSING_1", type: "crossing", x: 300, y: 325, width: 100, height: 40 },
-      // { id: "CROSSING_2", type: "crossing", x: 1250, y: 325, width: 100, height: 40 },
-      // { id: "CROSSING_3", type: "crossing", x: 1300, y: 325, width: 100, height: 40 },
-      // { id: "CROSSING_4", type: "crossing", x: 1250, y: 325, width: 100, height: 40 },
+      //Second part of the graph
+      { id: "INICIO_TRAMO_RE_MA", type: "station", x: 250, y: 750, width: 100, height: 60, label: "INICIO TRAMO RE-MA" },
+      ...calculatePositions(upperCVSequence_part2, elementsConfigs_part2.upperCircuitoVias, altoCircuitoVias),
+      // ...calculatePositions(lowerCVSequence_part2, elementsConfigs_part2.lowerCircuitoVias, altoCircuitoVias),
+      ...calculatePositions(upperTrackSequence_part2, elementsConfigs_part2.upperTrack, altoTrack),
+      ...calculatePositions(lowerTrackSequence_part2, elementsConfigs_part2.lowerTrack, altoTrack),
+      ...calculatePositions(lowerSwitchSequence_part2, elementsConfigs_part2.lowerSwitch, altoSwitch),
+      ...calculatePositions(upperSwitchSequence_part2, elementsConfigs_part2.upperSwitch, altoSwitch),
+      ...calculatePositions(upperSignalSequence2_part2, elementsConfigs_part2.upperSignal2, altoSignal),
+      ...calculatePositions(lowerSignalSequence2_part2, elementsConfigs_part2.lowerSignal2, altoSignal),
+      ...calculatePositions(upperCatenariaSequence_part2, elementsConfigs_part2.upperCatenaria, altoCatenaria),
+      ...calculatePositions(lowerCatenariaSequence_part2, elementsConfigs_part2.lowerCatenaria, altoCatenaria),
+      ...calculatePositions(raywailSequence, elementsConfigs_part2.lowerCircuitoVias, altoCircuitoVias),
+      ...generatePozosWithBlocks({ 
+        id: "PV5", 
+        x: 795, 
+        y: 525, 
+        label: "PV5" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "SE7", 
+        x: 905, 
+        y: 525, 
+        label: "SE7" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PB5", 
+        x: 1015, 
+        y: 525, 
+        label: "PB5" 
+      }),
+      ...generateStationWithBlocks({ 
+        id: "LA MAGDALENA", 
+        x: 1150, 
+        y: 525, 
+        label: "LA MAGDALENA" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "SE8", 
+        x: 1450, 
+        y: 525, 
+        label: "SE8" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PV6 + SE15", 
+        x: 1625, 
+        y: 525, 
+        label: "PV6 + SE15" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "SE9", 
+        x: 1845, 
+        y: 525, 
+        label: "SE9" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PB6", 
+        x: 1900, 
+        y: 525, 
+        label: "PB6" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "SE16 SANTA CLARA", 
+        x: 1955, 
+        y: 525, 
+        label: "SE16 SANTA CLARA" 
+      }),
+      ...generateStationWithBlocks({ 
+        id: "SAN FRANCISCO", 
+        x: 2260, 
+        y: 525, 
+        label: "SAN FRANCISCO" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "SE10", 
+        x: 2510, 
+        y: 525, 
+        label: "SE10" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PV7 + PB7", 
+        x: 2565, 
+        y: 525, 
+        label: "PV7 + PB7" 
+      }),
+      ...generateStationWithBlocks({ 
+        id: "LA ALAMEDA", 
+        x: 2810, 
+        y: 525, 
+        label: "LA ALAMEDA" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PV8", 
+        x: 3105, 
+        y: 525, 
+        label: "PV8" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PB8", 
+        x: 3215, 
+        y: 525, 
+        label: "PB8" 
+      }),
+      ...generateStationWithBlocks({ 
+        id: "EL EJIDO", 
+        x: 3300, 
+        y: 525, 
+        label: "EL EJIDO" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "PV9", 
+        x: 3375, 
+        y: 525, 
+        label: "PV9" 
+      }),
+      ...generatePozosWithBlocks({ 
+        id: "SE11 +PB9", 
+        x: 3435, 
+        y: 525, 
+        label: "SE11 +PB9" 
+      }),
     ]
 
     validateElements(elementsList)
     return elementsList
-  }, [upperCVSequence, lowerCVSequence])
+  }, [])
 
   // Add a new compositeObjects array after the elements array definition
   const compositeObjects = useMemo(
@@ -687,16 +1054,16 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
   )
 
   return (
-    <div className="relative h-[800px] overflow-auto">
-      <div className="absolute top-2 right-2 z-50">
+    <div className="relative h-[2000px] overflow-auto">
+      {/* <div className="absolute top-2 right-2 z-50">
         <button
           onClick={() => setShowGrid(!showGrid)}
           className="bg-gray-700 text-white px-2 py-1 text-xs rounded hover:bg-gray-600"
         >
           {showGrid ? "Hide Grid" : "Show Grid"}
         </button>
-      </div>
-      <div
+      </div> */}
+      {/* <div
         className="relative w-[4100px] h-[800px] bg-gray-900"
         onMouseMove={(e) => {
           // Get the position relative to the container
@@ -706,10 +1073,8 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
           onMouseMove?.(x, y)
         }}
       >
-        {/* Render the grid directly in the container */}
         {showGrid && (
           <div className="absolute inset-0 z-10 pointer-events-none">
-            {/* 5px grid - very light */}
             <div
               className="absolute inset-0"
               style={{
@@ -720,7 +1085,6 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
               }}
             />
 
-            {/* 10px grid - light */}
             <div
               className="absolute inset-0"
               style={{
@@ -731,7 +1095,6 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
               }}
             />
 
-            {/* 50px grid - medium */}
             <div
               className="absolute inset-0"
               style={{
@@ -742,7 +1105,6 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
               }}
             />
 
-            {/* 100px grid - bold */}
             <div
               className="absolute inset-0"
               style={{
@@ -753,7 +1115,6 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
               }}
             />
 
-            {/* Grid coordinates */}
             {Array.from({ length: Math.ceil(1500 / 50) + 1 }, (_, i) => i * 50).map((x) => (
               <div
                 key={`coord-x-${x}`}
@@ -774,7 +1135,7 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
               </div>
             ))}
           </div>
-        )}
+        )} */}
 
         {elements.map((element) => {
           // Check if this element is part of a colored composite
@@ -1066,7 +1427,7 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
         })}
 
         {/* Track crossings (X pattern) */}
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-50">
+        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
           {generateXCrossing(280, 312.5).map((path, index) => (
             <path key={`x1-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
@@ -1097,7 +1458,7 @@ export default function RailwayGraph({ coloredElements, onMouseMove }: RailwayGr
           ))}
         </div> */}
       </div>
-    </div>
+    // </div>
   )
 }
 
