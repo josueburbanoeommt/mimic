@@ -66,7 +66,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-start p-4 bg-gray-900">
+    <main className="flex min-h-screen flex-col items-start p-4 bg-gray-900 w-[4000px]">
       <LoadingOverlay isLoading={isLoading} />
       <h1 className="text-2xl font-bold text-white mb-4">Mímico</h1>
 

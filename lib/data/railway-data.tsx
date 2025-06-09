@@ -1,4 +1,5 @@
-export const upperCVSequence_part1 = [
+import { railwayDataParams } from "./railway-data-params"
+export const cv_upper_sq_part1 = [
     { id: "CV154", type: "block", width: 100, label: "CV154" },
     { id: "CV156", type: "block", width: 205, label: "CV156" },
     { id: "CV158", type: "block", width: 205, label: "CV158" },
@@ -41,7 +42,7 @@ export const upperCVSequence_part1 = [
     { id: "CVRE102", type: "block", label: "CVRE102" }
   ]
   
-  export const upperCVSequence_part2 = [
+  export const cv_upper_sq_part2 = [
     { id: "CVRE104", type: "block", width: 275, label: "CVRE104" },
     { id: "CVRE106", type: "block", label: "CVRE106" },
     { id: "CVRE108", type: "block", label: "CVRE108" },
@@ -86,7 +87,7 @@ export const upperCVSequence_part1 = [
     { id: "CVEJ110", type: "block", label: "CVEJ110" }
   ]
   
-  export const lowerCVSequence_part1 = [
+  export const cv_lower_sq_part1 = [
     { id: "CV129", type: "block", width: 100, label: "CV129" },
     { id: "CV131", type: "block", width: 205, label: "CV131" },
     { id: "CV133", type: "block", width: 205, label: "CV133" },
@@ -129,7 +130,7 @@ export const upperCVSequence_part1 = [
     { id: "CVRE101", type: "block", label: "CVRE101" }
   ]
   
-  export const lowerCVSequence_part2 = [
+  export const cv_lower_sq_part2 = [
     { id: "CVRE103", type: "block", label: "CVRE103", width: 275 },
     { id: "CVRE105", type: "block", label: "CVRE105" },
     { id: "CVRE107", type: "block", label: "CVRE107" },
@@ -173,3 +174,358 @@ export const upperCVSequence_part1 = [
     { id: "CVEJ107", type: "block", label: "CVEJ107" },
     { id: "CVEJ109", type: "block", label: "CVEJ109" }
   ]
+
+  export const track_upper_sq_part1 = [
+    { id: "TRACK_2", type: "track", height: railwayDataParams.tr_height },
+      { id: "TRACK_4", type: "track", height: railwayDataParams.tr_height, width: 650 },
+      { id: "TRACK_6", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_8", type: "track", height: railwayDataParams.tr_height, width: 715 },
+      { id: "TRACK_10", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_12", type: "track", height: railwayDataParams.tr_height, width: 940 },
+      { id: "TRACK_14", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_16", type: "track", height: railwayDataParams.tr_height, width: 160 },
+      { id: "TRACK_18", type: "track", height: railwayDataParams.tr_height, width: 660 },
+      { id: "TRACK_20", type: "track", height: railwayDataParams.tr_height, width: 50 },
+  ]
+
+  export const track_upper_sq_part2 = [
+    { id: "TRACK_22", type: "track", height: railwayDataParams.tr_height, width: 715 },
+      { id: "TRACK_24", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_26", type: "track", height: railwayDataParams.tr_height, width: 1050 },
+      { id: "TRACK_28", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_30", type: "track", height: railwayDataParams.tr_height, width: 490 },
+      { id: "TRACK_32", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_34", type: "track", height: railwayDataParams.tr_height, width: 425 },
+      { id: "TRACK_36", type: "track", height: railwayDataParams.tr_height, width: 50 },
+      { id: "TRACK_38", type: "track", height: railwayDataParams.tr_height, width: 215 },
+  ]
+
+  export const track_lower_sq_part1 = [
+    { id: "TRACK_1", type: "track", height: railwayDataParams.tr_height },
+    { id: "TRACK_3", type: "track", height: railwayDataParams.tr_height, width: 650 },
+    { id: "TRACK_5", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_7", type: "track", height: railwayDataParams.tr_height, width: 715 },
+    { id: "TRACK_9", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_11", type: "track", height: railwayDataParams.tr_height, width: 940 },
+    { id: "TRACK_13", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_15", type: "track", height: railwayDataParams.tr_height, width: 160 },
+    { id: "TRACK_17", type: "track", height: railwayDataParams.tr_height, width: 660 },
+    { id: "TRACK_19", type: "track", height: railwayDataParams.tr_height, width: 50 },
+  ]
+  
+  export const track_lower_sq_part2 = [
+    { id: "TRACK_21", type: "track", height: railwayDataParams.tr_height, width: 715 },
+    { id: "TRACK_23", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_25", type: "track", height: railwayDataParams.tr_height, width: 1050 },
+    { id: "TRACK_27", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_29", type: "track", height: railwayDataParams.tr_height, width: 490 },
+    { id: "TRACK_31", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_33", type: "track", height: railwayDataParams.tr_height, width: 425 },
+    { id: "TRACK_35", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_37", type: "track", height: railwayDataParams.tr_height, width: 220 }
+  ]
+
+  export const ct_upper_sq_part1 = [
+    { id: "C4(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C4" },
+    { id: "C5(2)", type: "catenaria-track", width: 990, height: railwayDataParams.ct_height, label: "C5" },
+    { id: "C6(2)", type: "catenaria-track", width: 265, height: railwayDataParams.ct_height, label: "C6" },
+    { id: "C7(2)", type: "catenaria-track", width: 495, height: railwayDataParams.ct_height, label: "C7" },
+    { id: "C8(2)", type: "catenaria-track", width: 270, height: railwayDataParams.ct_height, label: "C8" },
+    { id: "C9(2)", type: "catenaria-track", width: 440, height: railwayDataParams.ct_height, label: "C9" },
+    { id: "C10(2)", type: "catenaria-track", width: 215, height: railwayDataParams.ct_height, label: "C10" },
+    { id: "C11(2)", type: "catenaria-track", width: 660, height: railwayDataParams.ct_height, label: "C11" },
+  ]
+
+  export const ct_upper_sq_part2 = [
+    { id: "C11(2)-1", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C11", width: 275 },
+    { id: "C12(2)", type: "catenaria-track", width: 105, height: railwayDataParams.ct_height, label: "C12" },
+    { id: "C13(2)", type: "catenaria-track", width: 662.5, height: railwayDataParams.ct_height, label: "C13" },
+    { id: "C14(2)", type: "catenaria-track", width: 162.5, height: railwayDataParams.ct_height, label: "C14" },
+    { id: "C15(2)", type: "catenaria-track", width: 655, height: railwayDataParams.ct_height, label: "C15" },
+    { id: "C16(2)", type: "catenaria-track", width: 272.5, height: railwayDataParams.ct_height, label: "C16" },
+    { id: "C17(2)", type: "catenaria-track", width: 480, height: railwayDataParams.ct_height, label: "C17" },
+    { id: "C18(2)", type: "catenaria-track", width: 272.5, height: railwayDataParams.ct_height, label: "C18" },
+    { id: "C19(2)", type: "catenaria-track", width: 210, height: railwayDataParams.ct_height, label: "C19" },
+  ]
+
+  export const ct_lower_sq_part1 = [
+    { id: "C4(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C4" },
+    { id: "C5(1)", type: "catenaria-track", width: 370, height: railwayDataParams.ct_height, label: "C5" },
+    { id: "C6(1)", type: "catenaria-track", width: 885, height: railwayDataParams.ct_height, label: "C6" },
+    { id: "C7(1)", type: "catenaria-track", width: 160, height: railwayDataParams.ct_height, label: "C7" },
+    { id: "C8(1)", type: "catenaria-track", width: 605, height: railwayDataParams.ct_height, label: "C8" },
+    { id: "C9(1)", type: "catenaria-track", width: 105, height: railwayDataParams.ct_height, label: "C9" },
+    { id: "C10(1)", type: "catenaria-track", width: 495, height: railwayDataParams.ct_height, label: "C10" },
+    { id: "C11(1)", type: "catenaria-track", width: 380, height: railwayDataParams.ct_height, label: "C11" },
+    { id: "C12(1)", type: "catenaria-track", width: 330, height: railwayDataParams.ct_height, label: "C12" },
+  ]
+
+  export const ct_lower_sq_part2 = [
+    { id: "C12(1)-1", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C12", width: 385 },
+    { id: "C13(1)", type: "catenaria-track", width: 325, height: railwayDataParams.ct_height, label: "C13" },
+    { id: "C14(1)", type: "catenaria-track", width: 500, height: railwayDataParams.ct_height, label: "C14" },
+    { id: "C15(1)", type: "catenaria-track", width: 325, height: railwayDataParams.ct_height, label: "C15" },
+    { id: "C16(1)", type: "catenaria-track", width: 602.5, height: railwayDataParams.ct_height, label: "C16" }, 
+    { id: "C17(1)", type: "catenaria-track", width: 215, height: railwayDataParams.ct_height, label: "C17" },
+    { id: "C18(1)", type: "catenaria-track", width: 480, height: railwayDataParams.ct_height, label: "C18" },
+    { id: "C19(1)", type: "catenaria-track", width: 267.5, height: railwayDataParams.ct_height, label: "C19" },
+  ]
+
+  export const sw_upper_sq_part1 = [
+    { id: "A128", type: "switch", height: railwayDataParams.sw_height, width: 100, label: "A128" },
+    { id: "A130", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "A130", gap: 105 },
+    { id: "A132", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "A132", gap: 160 },
+    { id: "C102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "C102", gap: 55 },
+    { id: "SQ102", type: "signal", height: railwayDataParams.sig_height, label: "SQ102", width: 5, gap:180 },
+    { id: "AQU102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU102", gap: 105 },
+    { id: "AQU104", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU104", gap: 130 },
+    { id: "AQU106", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU106", gap: 105 },
+    { id: "AQU108", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU108", gap: 225 },
+    { id: "CTV1", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV1", gap: 335 },
+    { id: "AMV102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AMV102", gap: 340},
+    { id: "CTV2", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV2", gap: 215 },
+    { id: "AMV104", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AMV104", gap: 400 },
+    { id: "SCA104", type: "signal", height: railwayDataParams.sig_height, label: "SCA104", width: 5, gap:435 },
+    { id: "ACA102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "ACA102", gap: 120 },
+    { id: "SRE106-1", type: "signal", height: railwayDataParams.sig_height, label: "SRE106", width: 5 },
+  ]
+
+  export const sw_upper_sq_part2 = [
+    { id: "SRE106", type: "signal", height: railwayDataParams.sig_height, label: "SRE106", width: 5, gap:80 },
+    { id: "ARE102", type: "switch", height: railwayDataParams.sw_height, width: 100, label: "ARE102", gap: 205 },
+    { id: "CTV5-1", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV5", gap: 330 },
+    { id: "SMA104", type: "signal", height: railwayDataParams.sig_height, label: "SMA104", width: 5, gap: 115 },
+    { id: "AMA102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AMA102", gap: 280 },
+    { id: "CTV6-1", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV6", gap: 390 },
+    { id: "ASF102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "ASF102", gap: 450 },
+    { id: "CTV7-1", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV7", gap: 220 },
+    { id: "SAL104", type: "signal", height: railwayDataParams.sig_height, label: "SAL104", width: 5, gap:80 },
+    { id: "AAL102", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AAL102", gap: 300 },
+  ]
+
+  export const sw_lower_sq_part1 = [
+    { id: "A119", type: "switch", height: railwayDataParams.sw_height, width: 100, label: "A119" },
+    { id: "A121", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "A121", gap: 105 },
+    { id: "A123", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "A123", gap: 160 },
+    { id: "C101", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "C101", gap: 110 },
+    { id: "SQ101", type: "signal", height: railwayDataParams.sig_height, label: "SQ101", width: 5, gap:50 },
+    { id: "SQ105", type: "signal", height: railwayDataParams.sig_height, label: "SQ105", width: 5, gap:70 },
+    { id: "AQU101", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU101", gap: 105 },
+    { id: "AQU103", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU103", gap: 130 },
+    { id: "AQU105", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU105", gap: 105 },
+    { id: "AQU107", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AQU107", gap: 230 },
+    { id: "CTV3", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV1", gap: 215 },
+    { id: "SMV105", type: "signal", height: railwayDataParams.sig_height, label: "SMV105", width: 5, gap:115},
+    { id: "AMV101", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AMV101", gap: 340 },
+    { id: "CTV4", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV2", gap: 215 },
+    { id: "AMV103", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AMV103", gap: 840 },
+    { id: "ACA101", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "ACA101", gap: 120 },
+  ]
+
+  export const sw_lower_sq_part2 = [
+    { id: "SRE105", type: "signal", height: railwayDataParams.sig_height, label: "SRE105", width: 5, gap:80 },
+    { id: "ARE101", type: "switch", height: railwayDataParams.sw_height, width: 100, label: "ARE101", gap: 205 },
+    { id: "CTV5", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV5", gap: 330 },
+    { id: "SMA105", type: "signal", height: railwayDataParams.sig_height, label: "SMA105", width: 5, gap:445 },
+    { id: "CTV6-2", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV6", gap: 390 },
+    { id: "ASF101", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "ASF101", gap: 170 },
+    { id: "SSF105", type: "signal", height: railwayDataParams.sig_height, label: "SSF105", width: 5, gap:275 },
+    { id: "CTV7", type: "ctv", height: railwayDataParams.sw_height, width: 50, label: "CTV7", gap: 220 },
+    { id: "SAL103", type: "signal", height: railwayDataParams.sig_height, label: "SAL103", width: 5, gap:80 },
+    { id: "AAL101", type: "switch", height: railwayDataParams.sw_height, width: 50, label: "AAL101", gap: 350 },
+    { id: "SEJ103", type: "signal", height: railwayDataParams.sig_height, label: "SEJ103", width: 5 },
+  ]
+
+  export const sig_upper_sq_part1 = [
+    { id: "S128", type: "signal", height: railwayDataParams.sig_height, label: "S128", gap: 200 },
+    { id: "S132", type: "signal", height: railwayDataParams.sig_height, label: "S132", gap: 160 },
+    { id: "S134", type: "signal", height: railwayDataParams.sig_height, label: "S134", gap: 1320 },
+    { id: "SMV104", type: "signal", height: railwayDataParams.sig_height, label: "SMV104" },
+  ]
+
+  export const sig_upper_sq2_part2 = [
+    { id: "SRE108", type: "signal", height: railwayDataParams.sig_height, label: "SRE108", gap: 435 },
+    { id: "SMA102", type: "signal", height: railwayDataParams.sig_height, label: "SMA102", gap: 330 },
+    { id: "SMA106", type: "signal", height: railwayDataParams.sig_height, label: "SMA106", gap: 490 },
+    { id: "SSF102", type: "signal", height: railwayDataParams.sig_height, label: "SSF102", gap: 275 },
+    { id: "SSF104", type: "signal", height: railwayDataParams.sig_height, label: "SSF104", gap: 105 },
+    { id: "SSF106", type: "signal", height: railwayDataParams.sig_height, label: "SSF106", gap: 435 },
+    { id: "SAL102", type: "signal", height: railwayDataParams.sig_height, label: "SAL102", gap: 260 },
+    { id: "SAL106", type: "signal", height: railwayDataParams.sig_height, label: "SAL106", gap: 215 },
+    { id: "SEJ102", type: "signal", height: railwayDataParams.sig_height, label: "SEJ102", gap: 265 },
+    { id: "SUC102", type: "signal", height: railwayDataParams.sig_height, label: "SUC102" },
+  ]
+
+  export const sig_lower_sq_part1 = [
+    { id: "S129", type: "signal", height: railwayDataParams.sig_height, label: "S129", gap: 265 },
+    { id: "S135", type: "signal", height: railwayDataParams.sig_height, label: "S135", gap: 50 },
+    { id: "SQ103", type: "signal", height: railwayDataParams.sig_height, label: "SQ103", gap: 330 },
+    { id: "SQ107", type: "signal", height: railwayDataParams.sig_height, label: "SQ107", gap: 50 },
+    { id: "SQU109", type: "signal", height: railwayDataParams.sig_height, label: "SQU109", gap: 275 },
+    { id: "SQU111", type: "signal", height: railwayDataParams.sig_height, label: "SQU111", gap: 380 },
+    { id: "SMV101", type: "signal", height: railwayDataParams.sig_height, label: "SMV101", gap: 105 },
+    { id: "SMV103", type: "signal", height: railwayDataParams.sig_height, label: "SMV103", gap: 275 },
+    { id: "SMV107", type: "signal", height: railwayDataParams.sig_height, label: "SMV107", gap:385 },
+    { id: "SSO101", type: "signal", height: railwayDataParams.sig_height, label: "SSO101", gap: 270 },
+    { id: "SSO103", type: "signal", height: railwayDataParams.sig_height, label: "SSO103", gap: 50 },
+    { id: "SSO105", type: "signal", height: railwayDataParams.sig_height, label: "SSO105", gap: 215 },
+    { id: "SCA101", type: "signal", height: railwayDataParams.sig_height, label: "SCA101", gap: 325 },
+    { id: "SRE101", type: "signal", height: railwayDataParams.sig_height, label: "SRE101", gap: 275 },
+  ]
+
+  export const sig_upper_sq2_part1 = [
+    { id: "S130", type: "signal", height: railwayDataParams.sig_height, label: "S130", gap: 210 },
+    { id: "S136", type: "signal", height: railwayDataParams.sig_height, label: "S136" },
+    { id: "SQU104", type: "signal", height: railwayDataParams.sig_height, label: "SQU104", gap:385 },
+    { id: "SQU108", type: "signal", height: railwayDataParams.sig_height, label: "SQU108" },
+    { id: "SQU110", type: "signal", height: railwayDataParams.sig_height, label: "SQU110", gap:275 },
+    { id: "SQU112", type: "signal", height: railwayDataParams.sig_height, label: "SQU112",gap: 435 },
+    { id: "SMV102", type: "signal", height: railwayDataParams.sig_height, label: "SMV102", gap:335 },
+    { id: "SMV106", type: "signal", height: railwayDataParams.sig_height, label: "SMV106", gap:375 },
+    { id: "SSO102", type: "signal", height: railwayDataParams.sig_height, label: "SSO102", gap:275 },
+    { id: "SSO104", type: "signal", height: railwayDataParams.sig_height, label: "SSO104", gap:215 },
+    { id: "SCA102", type: "signal", height: railwayDataParams.sig_height, label: "SCA102", gap:105	 },
+    { id: "SCA106", type: "signal", height: railwayDataParams.sig_height, label: "SCA106", gap:270 },
+    { id: "SRE102", type: "signal", height: railwayDataParams.sig_height, label: "SRE102", gap:275 },
+    { id: "SRE104", type: "signal", height: railwayDataParams.sig_height, label: "SRE104" },
+  ]
+
+  export const sig_lower_sq2_part1 = [
+    { id: "S127", type: "signal", height: railwayDataParams.sig_height, label: "S127", gap: 195 },
+    { id: "S131", type: "signal", height: railwayDataParams.sig_height, label: "S131", gap: 160 },
+    { id: "S133", type: "signal", height: railwayDataParams.sig_height, label: "S133", gap: 45 },
+  ]
+
+  export const sig_lower_sq2_part2 = [
+    { id: "SRE107", type: "signal", height: railwayDataParams.sig_height, label: "SRE107", gap: 380 },
+    { id: "SMA101", type: "signal", height: railwayDataParams.sig_height, label: "SMA101", gap: 50 },
+    { id: "SMA103", type: "signal", height: railwayDataParams.sig_height, label: "SMA103", gap: 330 },  
+    { id: "SMA107", type: "signal", height: railwayDataParams.sig_height, label: "SMA107", gap: 490 },
+    { id: "SSF101", type: "signal", height: railwayDataParams.sig_height, label: "SSF101", gap: 275 },
+    { id: "SSF103", type: "signal", height: railwayDataParams.sig_height, label: "SSF103", gap: 490 },
+    { id: "SAL101", type: "signal", height: railwayDataParams.sig_height, label: "SAL101", gap: 315 },
+    { id: "SAL105", type: "signal", height: railwayDataParams.sig_height, label: "SAL105", gap: 215 },
+    { id: "SEJ101", type: "signal", height: railwayDataParams.sig_height, label: "SEJ101", gap: 265 },
+  ]
+
+  export const sig_upper_sq_part3 = [
+    { id: "SUC102-1", type: "signal", height: railwayDataParams.sig_height, label: "SUC102", gap: 260 },
+    { id: "SUC106", type: "signal", height: railwayDataParams.sig_height, label: "SUC106", gap: 214 },
+    { id: "SPR102", type: "signal", height: railwayDataParams.sig_height, label: "SPR102", gap: 215 },
+    { id: "SLC102", type: "signal", height: railwayDataParams.sig_height, label: "SLC102", gap: 260 },
+    { id: "SLC106", type: "signal", height: railwayDataParams.sig_height, label: "SLC106", gap: 268 },
+    { id: "SIN102", type: "signal", height: railwayDataParams.sig_height, label: "SIN102", gap: 215 },
+    { id: "SJI102", type: "signal", height: railwayDataParams.sig_height, label: "SJI102", gap: 370 },
+    { id: "SJI106", type: "signal", height: railwayDataParams.sig_height, label: "SJI106", gap: 160 },
+    { id: "SLA102", type: "signal", height: railwayDataParams.sig_height, label: "SLA102", gap: 275 },
+    { id: "SLA104", type: "signal", height: railwayDataParams.sig_height, label: "SLA104", gap: 610 },
+    { id: "SLA112", type: "signal", height: railwayDataParams.sig_height, label: "SLA112", gap: 100 },
+    { id: "SLA120", type: "signal", height: railwayDataParams.sig_height, label: "SLA120", gap: 275 },
+  ]
+
+  export const sw_upper_sq_part3 = [
+    { id: "SUC104", type: "signal", height: railwayDataParams.sig_height, label: "SUC104", gap: 50, width: 5 },
+    { id: "AUC102", type: "switch", height: railwayDataParams.sw_height, label: "AUC102", gap: 550 },
+    { id: "SLC104", type: "signal", height: railwayDataParams.sig_height, label: "SLC104", gap: 50, width: 5 },
+    { id: "ALC102", type: "switch", height: railwayDataParams.sw_height, label: "ALC102", gap: 715 },
+    { id: "SJI104", type: "signal", height: railwayDataParams.sig_height, label: "SJI104", gap: 50, width: 5 },
+    { id: "AJI102", type: "switch", height: railwayDataParams.sw_height, label: "AJI102", gap: 35 },
+    { id: "CTV14", type: "ctv", height: railwayDataParams.sw_height, label: "CTV14", gap: 155 },
+    { id: "AJI104", type: "switch", height: railwayDataParams.sw_height, label: "AJI104", gap: 109, width: 50 },
+    { id: "AJI106", type: "switch", height: railwayDataParams.sw_height, label: "AJI106", gap: 55, width: 50 },
+    { id: "SLA106", type: "signal", height: railwayDataParams.sig_height, label: "SLA106", gap: 65, width: 5 },
+    { id: "ALA102", type: "switch", height: railwayDataParams.sw_height, label: "ALA102", gap: 109, width: 50 },
+    { id: "ALA104", type: "switch", height: railwayDataParams.sw_height, label: "ALA104", gap: 95, width: 50 },
+    { id: "ALA106", type: "switch", height: railwayDataParams.sw_height, label: "ALA106", gap: 192.5 },
+    { id: "SLA116", type: "signal", height: railwayDataParams.sig_height, label: "SLA116", gap: 205, width: 5 },
+    { id: "TPLA2", type: "signal", height: railwayDataParams.sig_height, label: "TPLA2", gap: 275, width: 5 },
+  ]
+
+  export const cv_upper_sq_part3 = [
+    { id: "CVUC102", type: "block", height: railwayDataParams.cv_height, label: "CVUC102" },
+    { id: "CVUC104", type: "block", height: railwayDataParams.cv_height, label: "CVUC104",  width: 205 },
+    { id: "CVUC106", type: "block", height: railwayDataParams.cv_height, label: "CVUC106" },
+    { id: "CVUC108", type: "block", height: railwayDataParams.cv_height, label: "CVUC108" },
+    { id: "CVUC110", type: "block", height: railwayDataParams.cv_height, label: "CVUC110" },
+    { id: "CVUC112", type: "block", height: railwayDataParams.cv_height, label: "CVUC112" },
+    { id: "CVPR102", type: "block", height: railwayDataParams.cv_height, label: "CVPR102" },
+    { id: "CVPR104", type: "block", height: railwayDataParams.cv_height, label: "CVPR104" },
+    { id: "CVPR106", type: "block", height: railwayDataParams.cv_height, label: "CVPR106" },
+    { id: "CVPR108", type: "block", height: railwayDataParams.cv_height, label: "CVPR108" },
+    { id: "CVLC102", type: "block", height: railwayDataParams.cv_height, label: "CVLC102" },
+    { id: "CVLC104", type: "block", height: railwayDataParams.cv_height, label: "CVLC104", width: 205 },
+    { id: "CVLC106", type: "block", height: railwayDataParams.cv_height, label: "CVLC106" },
+    { id: "CVLC108", type: "block", height: railwayDataParams.cv_height, label: "CVLC108" },
+    { id: "CVLC110", type: "block", height: railwayDataParams.cv_height, label: "CVLC110" },
+    { id: "CVLC112", type: "block", height: railwayDataParams.cv_height, label: "CVLC112" },
+    { id: "CVLC114", type: "block", height: railwayDataParams.cv_height, label: "CVLC114" },
+    { id: "CVIN102", type: "block", height: railwayDataParams.cv_height, label: "CVIN102" },
+    { id: "CVIN104", type: "block", height: railwayDataParams.cv_height, label: "CVIN104" },
+    { id: "CVIN106", type: "block", height: railwayDataParams.cv_height, label: "CVIN106" },
+    { id: "CVIN108", type: "block", height: railwayDataParams.cv_height, label: "CVIN108" },
+    { id: "CVIN110", type: "block", height: railwayDataParams.cv_height, label: "CVIN110" },
+    { id: "CVIN112", type: "block", height: railwayDataParams.cv_height, label: "CVIN112" },
+    { id: "CVJI102", type: "block", height: railwayDataParams.cv_height, label: "CVJI102" },
+    { id: "CVJI104", type: "block", height: railwayDataParams.cv_height, label: "CVJI104", width: 205 },
+    { id: "CVJI106", type: "block", height: railwayDataParams.cv_height, label: "CVJI106" },
+    { id: "CVJI108", type: "block", height: railwayDataParams.cv_height, label: "CVJI108" },
+    { id: "CVJI110", type: "block", height: railwayDataParams.cv_height, label: "CVJI110" },
+    { id: "CVJI112", type: "block", height: railwayDataParams.cv_height, label: "CVJI112", width: 275 },
+    { id: "CVLA102", type: "block", height: railwayDataParams.cv_height, label: "CVLA102" },
+    { id: "CVLA104", type: "block", height: railwayDataParams.cv_height, label: "CVLA104", width: 275 },
+    { id: "CVLA106", type: "block", height: railwayDataParams.cv_height, label: "CVLA106", width: 275 },
+    { id: "CVLA108", type: "block", height: railwayDataParams.cv_height, label: "CVLA108", width:100 },
+    { id: "CVLA110", type: "block", height: railwayDataParams.cv_height, label: "CVLA110", width: 205 },
+  ]
+
+  export const track_upper_sq_part3 = [
+    { id: "TRACK_40", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_42", type: "track", height: railwayDataParams.tr_height, width: 425 },
+    { id: "TRACK_44", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_46", type: "track", height: railwayDataParams.tr_height, width: 160 },
+    { id: "TRACK_48", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_50", type: "track", height: railwayDataParams.tr_height, width: 480 },
+    { id: "TRACK_52", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_54", type: "track", height: railwayDataParams.tr_height, width:270 },
+    { id: "TRACK_56", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_58", type: "track", height: railwayDataParams.tr_height, width: 650 },
+    { id: "TRACK_60", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_62", type: "track", height: railwayDataParams.tr_height, width: 870 },
+  ]
+
+  export const track_lower_sq_part3 = [
+    { id: "TRACK_39", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_41", type: "track", height: railwayDataParams.tr_height, width: 425 },
+    { id: "TRACK_43", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_45", type: "track", height: railwayDataParams.tr_height, width: 160 },
+    { id: "TRACK_47", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_49", type: "track", height: railwayDataParams.tr_height, width: 480 },
+    { id: "TRACK_51", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_53", type: "track", height: railwayDataParams.tr_height, width: 270 },
+    { id: "TRACK_55", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_57", type: "track", height: railwayDataParams.tr_height, width: 650 },
+    { id: "TRACK_59", type: "track", height: railwayDataParams.tr_height, width: 50 },
+    { id: "TRACK_61", type: "track", height: railwayDataParams.tr_height, width: 870 },
+  ]
+
+  export const ct_upper_sq_part3 = [
+    { id: "C19(2)-1", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C19", width: 260 },
+    { id: "C20(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C20", width: 270 },
+    { id: "C21(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C21", width: 425 },
+    { id: "C22(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C22", width: 325 },
+    { id: "C23(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C23", width: 535 },
+    { id: "C24(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C24", width: 50 },
+    { id: "C25(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C25", width: 720 },
+    { id: "C26(2)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C26", width: 590 },
+  ]
+
+  export const ct_lower_sq_part3 = [
+    { id: "C20(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C20", width: 480 },
+    { id: "C21(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C21", width: 215 },
+    { id: "C22(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C22", width: 535 },
+    { id: "C23(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C23", width: 325 },
+    { id: "C24(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C24", width: 315 },
+    { id: "C25(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C25", width: 105 },
+    { id: "C26(1)", type: "catenaria-track", height: railwayDataParams.ct_height, label: "C26", width: 1205 },
+  ]
+  
