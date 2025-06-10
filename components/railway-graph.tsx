@@ -22,7 +22,10 @@ import {
   track_upper_sq_part3,
   track_lower_sq_part3,
   ct_upper_sq_part3,
-  ct_lower_sq_part3
+  ct_lower_sq_part3,
+  sw_lower_sq_part3,
+  cv_lower_sq_part3,
+  sig_lower_sq_part3
 } from '../lib/data/railway-data'
 import { railwayDataParams, elementsConfigs_part1, elementsConfigs_part2, elementsConfigs_part3 } from "@/lib/data/railway-data-params"
 import { stations } from "@/lib/data/railway-stations"
@@ -366,6 +369,18 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
     ...ct_lower_sq_part3
   ], [])
 
+  const swLowerSqPart3: SequenceElement[] = useMemo(() => [
+    ...sw_lower_sq_part3
+  ], [])
+
+  const cvLowerSqPart3: SequenceElement[] = useMemo(() => [
+    ...cv_lower_sq_part3
+  ], [])
+
+  const sigLowerSqPart3: SequenceElement[] = useMemo(() => [
+    ...sig_lower_sq_part3
+  ], [])
+
 
   // Calculate positions for all elements
   const elements = useMemo<Element[]>(() => {
@@ -419,6 +434,27 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
       ...calculatePositions(trLowerSqPart3, elementsConfigs_part3.tr_lower, railwayDataParams.tr_height),
       ...calculatePositions(ctUpperSqPart3, elementsConfigs_part3.ct_upper, railwayDataParams.ct_height),
       ...calculatePositions(ctLowerSqPart3, elementsConfigs_part3.ct_lower, railwayDataParams.ct_height),
+      ...calculatePositions(swLowerSqPart3, elementsConfigs_part3.sw_lower, railwayDataParams.sw_height),
+      ...calculatePositions(cvLowerSqPart3, elementsConfigs_part3.cv_lower, railwayDataParams.cv_height),
+      ...calculatePositions(sigLowerSqPart3, elementsConfigs_part3.sig_lower, railwayDataParams.sig_height),
+
+      {id: "SLA118", type: "signal", x: 3155, y: 1140, width: 5, height: railwayDataParams.sig_height, label: "SLA118" },
+      {id: "SLA122", type: "signal", x: 3312.5, y: 1140, width: 5, height: railwayDataParams.sig_height, label: "SLA122" },
+      {id: "TPLA4", type: "signal", x: 3500, y: 1140, width: 5, height: railwayDataParams.sig_height, label: "TPLA4" },
+      {id: "CVLA112", type: "cv", x: 3125, y: 1160, width: 187.5, height: railwayDataParams.ct_height, label: "CVLA112" },
+      {id: "CVLA114", type: "cv", x: 3317.5, y: 1160, width: 182.5, height: railwayDataParams.ct_height, label: "CVLA114" },
+      {id: "C26(4)", type: "catenaria-track", x: 3125, y: 1205, width: 375, height: railwayDataParams.ct_height, label: "C26" },
+      {id: "TRACK_100", type: "track", x: 3125, y: 1185, width: 375, height: railwayDataParams.tr_height },
+
+      {id: "SLA117", type: "signal", x: 3155, y: 1545, width: 5, height: railwayDataParams.sig_height, label: "SLA117" },
+      {id: "SLA119", type: "signal", x: 3312.5, y: 1545, width: 5, height: railwayDataParams.sig_height, label: "SLA119" },
+      {id: "TPLA3", type: "signal", x: 3500, y: 1545, width: 5, height: railwayDataParams.sig_height, label: "TPLA3" },
+      {id: "CVLA111", type: "cv", x: 3125, y:1528, width: 187.5, height: railwayDataParams.ct_height, label: "CVLA111" },
+      {id: "CVLA113", type: "cv", x: 3317.5, y: 1528, width: 182.5, height: railwayDataParams.ct_height, label: "CVLA113" },
+      {id: "C26(3-1)", type: "catenaria-track", x: 3125, y: 1480, width: 185, height: railwayDataParams.ct_height, label: "C26" },
+      {id: "C26(3-2)", type: "catenaria-track", x: 3315, y: 1480, width: 185, height: railwayDataParams.ct_height, label: "C26" },
+      {id: "TRACK_99", type: "track", x: 3125, y: 1505, width: 375, height: railwayDataParams.tr_height },
+
     ]
 
     validateElements(elementsList)
@@ -769,6 +805,12 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
           {generateXCrossing(2670, 1312.5).map((path, index) => (
             <path key={`x1-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
+          {generateX3Crossing(2975, 1190, 150).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+          {generateX4Crossing(2975, 1457, 210).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
         </svg>
         
 
@@ -895,6 +937,45 @@ function generateXCrossing(startX: number, startY: number, width: number = 205, 
 function generateX1Crossing(startX: number, startY: number, width: number = 205, height: number = 75): string[] {
   const endX = startX + width;
   const topY = startY;
+  const bottomY = startY + height;
+  
+  const controlPoint1X = startX + (width * 0.3);
+  const controlPoint2X = startX + (width * 0.7);
+  
+  return [
+    `M${startX},${topY} C${controlPoint1X},${topY} ${controlPoint2X-50},${bottomY} ${endX-60},${bottomY}`,
+  ];
+}
+
+function generateX2Crossing(startX: number, startY: number, width: number = 205, height: number = 75): string[] {
+  const endX = startX + width;
+  const topY = startY;
+  const bottomY = startY + height;
+  
+  const controlPoint1X = startX + (width * 0.3);
+  const controlPoint2X = startX + (width * 0.7);
+  
+  return [
+    `M${startX},${bottomY} C${controlPoint1X},${bottomY} ${controlPoint2X},${topY} ${endX},${topY}`
+  ];
+}
+
+function generateX3Crossing(startX: number, startY: number, width: number = 205, height: number = 75): string[] {
+  const endX = startX + width;
+  const topY = startY - 22.5 ;
+  const bottomY = startY + height;
+  
+  const controlPoint1X = startX + (width * 0.3);
+  const controlPoint2X = startX + (width * 0.7);
+  
+  return [
+    `M${startX},${bottomY} C${controlPoint1X},${bottomY} ${controlPoint2X},${topY} ${endX},${topY}`
+  ];
+}
+
+function generateX4Crossing(startX: number, startY: number, width: number = 205, height: number = 75): string[] {
+  const endX = startX + width;
+  const topY = startY - 22.5 ;
   const bottomY = startY + height;
   
   const controlPoint1X = startX + (width * 0.3);

@@ -189,16 +189,16 @@ export const elementsConfigs_part2 = {
 } as const
 
 const cv_upper_part3_y = 1275
-const cv_lower_part3_y = 1125
+const cv_lower_part3_y = 1400
 const tr_upper_part3_y = 1310
 const tr_lower_part3_y = 1382.5
 const ct_upper_part3_y = 1332.5
 const ct_lower_part3_y = 1352.5
 const sw_upper_part3_y = 1265
-const sw_lower_part3_y = 1150
+const sw_lower_part3_y = 1425
 const sig_upper_part3_y = 1245
 const sig_upper_part3_y2 = 1170
-const sig_lower_part3_y = 1160
+const sig_lower_part3_y = 1435
 const sig_lower_part3_y2 = 1160
 
 export const elementsConfigs_part3 = {
@@ -212,7 +212,7 @@ export const elementsConfigs_part3 = {
     y: cv_lower_part3_y,
     defaultElementWidth: 50,
     defaultGap: 5,
-    startX: 400
+    startX: 262.5
   },
   tr_upper: {
     y: tr_upper_part3_y,
@@ -248,7 +248,7 @@ export const elementsConfigs_part3 = {
     y: sw_lower_part3_y,
     defaultElementWidth: 100,
     defaultGap: 5,
-    startX: 400
+    startX: 312.5
   },
   sig_upper: {
     y: sig_upper_part3_y,
@@ -266,7 +266,7 @@ export const elementsConfigs_part3 = {
     y: sig_lower_part3_y,
     defaultElementWidth: 5,
     defaultGap: 50,
-    startX: 480
+    startX: 522.5
   },
   sig_lower2: {
     y: sig_lower_part3_y2,
