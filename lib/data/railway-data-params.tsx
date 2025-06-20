@@ -84,19 +84,19 @@ export const elementsConfigs_part1 = {
     y: sig_upper_part1_y2,
     defaultElementWidth: 5,
     defaultGap: 50,
-    startX: 480
+    startX: 485
   },
   sig_lower: {
     y: sig_lower_part1_y,
     defaultElementWidth: 5,
     defaultGap: 50,
-    startX: 480
+    startX: 485
   },
   sig_lower2: {
     y: sig_lower_part1_y2,
     defaultElementWidth: 5,
     defaultGap: 50,
-    startX: 280
+    startX: 275
   }
 } as const
 

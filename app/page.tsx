@@ -9,15 +9,20 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar"
 import { CalendarIcon } from "lucide-react"
 import { format, addDays, subDays } from "date-fns"
+import { es } from "date-fns/locale"
 import { cn } from "@/lib/utils"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { LoadingOverlay } from "@/components/loading-overlay"
+import mockData from "@/lib/mockData/mock-data.json"
 
 export default function Home() {
 
   const [coloredElements, setColoredElements] = useState<Record<string, string>>({})
   const [isCatenariasActive, setIsCatenariasActive] = useState(false)
   const [isCircuitosViasActive, setIsCircuitosViasActive] = useState(false)
+  const [isSwitchActive, setIsSwitchActive] = useState(false)
+  const [isViasActive, setIsViasActive] = useState(false)
+  const [isSeñalesActive, setIsSeñalesActive] = useState(false)
   const [selectedDate, setSelectedDate] = useState<Date>()
   const [selectedSchedule, setSelectedSchedule] = useState<string>("")
   const [isLoading, setIsLoading] = useState(false)
@@ -37,17 +42,20 @@ export default function Home() {
 
       setIsLoading(true)
       const formattedDate = selectedDate ? format(selectedDate, 'yyyy-MM-dd') : ''
-      const response = await fetch(`/api/railway?date=${formattedDate}&schedule=${selectedSchedule}&type=${type}`)
-      const data = await response.json()
-      
-      if(!data.success) {
-        toast.error("No hay datos disponibles") 
+      if (!(mockData as any)[formattedDate]) {
+        toast.error("No hay datos disponibles para esta fecha")
         return
       }
-
-      // Gather all unique CV values from the response data
-      const allElements = new Set<string>(data.data.flat())
-      console.log(allElements)
+      if (!(mockData as any)[formattedDate][selectedSchedule]) {
+        toast.error("No hay datos disponibles para este horario")
+        return
+      }
+      if (!(mockData as any)[formattedDate][selectedSchedule][type]) {
+        toast.error("No hay datos disponibles para este tipo")
+        return
+      }
+      const allElements = new Set<string>((mockData as any)[formattedDate][selectedSchedule][type].flat())
+      console.log("allElements", allElements)
 
       // Create colored elements object with red color for each CV
       const newColoredElements = Array.from(allElements).reduce((acc: Record<string, string>, element: string) => {
@@ -66,7 +74,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-start p-4 bg-gray-900 w-[4000px]">
+    <main className="flex min-h-screen flex-col items-start p-4 bg-gray-900 w-[4100px]">
       <LoadingOverlay isLoading={isLoading} />
       <h1 className="text-2xl font-bold text-white mb-4">Mímico</h1>
 
@@ -78,7 +86,7 @@ export default function Home() {
               !selectedDate && "text-muted-foreground"
             )}>
               <CalendarIcon className="mr-2 h-4 w-4" />
-              {selectedDate ? format(selectedDate, "PPP") : <span>Seleccionar fecha</span>}
+              {selectedDate ? format(selectedDate, "PPP", { locale: es }) : <span>Seleccionar fecha</span>}
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-auto p-0" align="start">
@@ -103,7 +111,8 @@ export default function Home() {
               disabled={(date) => {
                 return date < oneWeekBefore || date > oneWeekAfter
               }}
-              initialFocus
+              locale={es}
+              weekStartsOn={1}
             />
           </PopoverContent>
         </Popover>
@@ -143,11 +152,46 @@ export default function Home() {
         >
           {!isCatenariasActive ? "Mostrar Catenarias" : "Ocultar Catenarias"}
         </Button>
+        <Button
+          disabled={isLoading || !selectedDate || !selectedSchedule}
+          onClick={() => handleToggling(isSwitchActive, "Agujas:", setIsSwitchActive, setColoredElements, "#e97132")}
+          className={`font-bold py-2 px-4 rounded mb-4 ${
+            isSwitchActive
+              ? "bg-blue-500 hover:bg-blue-700 text-white"
+              : "bg-gray-500 hover:bg-gray-700 text-white"
+          }`}
+        >
+          {!isSwitchActive ? "Mostrar Agujas" : "Ocultar Agujas"}
+        </Button>
+        <Button
+          disabled={isLoading || !selectedDate || !selectedSchedule}
+          onClick={() => handleToggling(isViasActive, "Vías:", setIsViasActive, setColoredElements, "#FFFF00")}
+          className={`font-bold py-2 px-4 rounded mb-4 ${
+            isViasActive
+              ? "bg-blue-500 hover:bg-blue-700 text-white"
+              : "bg-gray-500 hover:bg-gray-700 text-white"
+          }`}
+        >
+          {!isViasActive ? "Mostrar Vías" : "Ocultar Vías"}
+        </Button>
+        <Button
+          disabled={isLoading || !selectedDate || !selectedSchedule}
+          onClick={() => handleToggling(isSeñalesActive, "Señales:", setIsSeñalesActive, setColoredElements, "#00FF00")}
+          className={`font-bold py-2 px-4 rounded mb-4 ${
+            isSeñalesActive
+              ? "bg-blue-500 hover:bg-blue-700 text-white"
+              : "bg-gray-500 hover:bg-gray-700 text-white"
+          }`}
+        >
+          {!isSeñalesActive ? "Mostrar Señales" : "Ocultar Señales"}
+        </Button>
       </div>
+
+        
 
       <div className="flex flex-row gap-4">
         <span className="text-white">
-          {`Monstrando: ${isCatenariasActive ? "Catenarias" : isCircuitosViasActive ? "Circuitos de vía" : "Ninguno"}`}
+          {`Monstrando: ${isCatenariasActive ? "Catenarias" : isCircuitosViasActive ? "Circuitos de vía" : isSeñalesActive ? "Señales" : isViasActive ? "Vías" : isSwitchActive ? "Agujas" : "Ninguno"}`}
           {` | Fecha: ${selectedDate ? format(selectedDate, "PPP") : "Seleccionar fecha"}`}
           {` | Horario: ${selectedSchedule}`}
           

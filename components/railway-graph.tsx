@@ -28,7 +28,7 @@ import {
   sig_lower_sq_part3
 } from '../lib/data/railway-data'
 import { railwayDataParams, elementsConfigs_part1, elementsConfigs_part2, elementsConfigs_part3 } from "@/lib/data/railway-data-params"
-import { stations } from "@/lib/data/railway-stations"
+import { stations, Station } from "@/lib/data/railway-stations"
 import { pozos } from "@/lib/data/railway-pozos"
 
 interface RailwayGraphProps {
@@ -47,6 +47,7 @@ interface Element {
   label?: string
   rotate?: boolean
   labelPosition?: LabelPosition
+  fontSize?: number
 }
 
 // Track configuration for automatic positioning
@@ -67,31 +68,25 @@ interface SequenceElement {
   gap?: number // Custom gap after this element
 }
 
-interface StationConfig {
-  id: string
-  x: number
-  y: number
-  label: string
-}
-
-function generateStationWithBlocks(config: StationConfig): Element[] {
-  const stationWidth = 75
-  const stationHeight = 80
-  const blockWidth = 10
-  const blockHeight = 100
-  const bottomBlockHeight = 10
+function generateStationWithBlocks(config: Station): Element[] {
+  const stationWidth = config.width || 60
+  const stationHeight = config.height || 80
+  const blockWidth = (config.width || 50) * 0.2 || 5
+  const bottomBlockHeight = (config.height || 100) * 0.1 || 10
   const sideBlockWidth = 5
-  const sideBlockHeight = 75
+  const sideBlockHeight = ((config.height || 150) * 0.5) || 75 
+  const fontSize = config.fontSize || 12
 
   return [
     { 
-      id: config.id, 
-      type: "station", 
-      x: config.x, 
-      y: config.y,  
-      width: stationWidth, 
-      height: stationHeight, 
-      label: config.label 
+      id: config.id,
+      type: "station",
+      x: config.x,
+      y: config.y,
+      width: stationWidth,
+      height: stationHeight,
+      label: config.label,
+      fontSize: fontSize
     },
     { 
       id: `${config.id}_1`, 
@@ -99,13 +94,13 @@ function generateStationWithBlocks(config: StationConfig): Element[] {
       x: config.x - stationWidth/2, 
       y: config.y, 
       width: blockWidth, 
-      height: blockHeight 
+      height: stationHeight 
     },
     { 
       id: `${config.id}_2`, 
       type: "stationBlock", 
       x: config.x - stationWidth/2, 
-      y: config.y + blockHeight, 
+      y: config.y + stationHeight, 
       width: 7*stationWidth/4 + blockWidth, 
       height: bottomBlockHeight 
     },
@@ -115,25 +110,25 @@ function generateStationWithBlocks(config: StationConfig): Element[] {
       x: config.x + stationWidth + stationWidth/4, 
       y: config.y, 
       width: blockWidth, 
-      height: blockHeight 
+      height: stationHeight 
     },
     //Punta derecha de la estación
     { 
       id: `${config.id}_4`, 
       type: "triangleLeft", 
       x: config.x + stationWidth + stationWidth/4, 
-      y: config.y - blockHeight/10, 
+      y: config.y - stationHeight/10, 
       width: blockWidth*2, 
-      height: blockHeight/10,
+      height: stationHeight/10,
     },
     //Punta izquierda de la estación
     { 
       id: `${config.id}_5`, 
       type: "triangleRight", 
       x: config.x - stationWidth/2, 
-      y: config.y - blockHeight/10, 
+      y: config.y - stationHeight/10, 
       width: blockWidth*2, 
-      height: blockHeight/10,
+      height: stationHeight/10,
     },
     //Energy
     { 
@@ -147,13 +142,12 @@ function generateStationWithBlocks(config: StationConfig): Element[] {
   ]
 }
 
-function generatePozosWithBlocks(config: StationConfig): Element[] {
+function generatePozosWithBlocks(config: Station): Element[] {
   const stationWidth = 50
-  const stationHeight = 80
+  const stationHeight = config.height || 80
   const sideBlockWidth = 5
-  const sideBlockHeight = 75
-  const blockHeight = 100
-  const bottomBlockHeight = 10
+  const sideBlockHeight = ((config.height || 150) * 0.5) || 75 
+  const bottomBlockHeight = ((config.height || 100) * 0.1) || 10
 
   return [
     { 
@@ -163,13 +157,13 @@ function generatePozosWithBlocks(config: StationConfig): Element[] {
       y: config.y,  
       width: stationWidth, 
       height: stationHeight, 
-      label: config.label 
+      label: config.label,
     },
     { 
       id: `${config.id}_2`, 
       type: "stationBlock", 
       x: config.x, 
-      y: config.y + blockHeight, 
+      y: config.y + stationHeight, 
       width: stationWidth, 
       height: bottomBlockHeight 
     },
@@ -411,7 +405,7 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
       ...calculatePositions(sigLowerSqPart1, elementsConfigs_part1.sig_lower, railwayDataParams.sig_height),
       ...calculatePositions(sigLowerSq2_part1, elementsConfigs_part1.sig_lower2, railwayDataParams.sig_height),
 
-      { id: "FINRECREO", type: "station", x: 3875, y: 316, width: 100, height: 60, label: "FIN DE\nESTACIÓN RECREO" },
+      { id: "FINRECREO", type: "station", x: 4050, y: 316, width: 100, height: 60, label: "FIN DE\nESTACIÓN RECREO" },
 
       //Second part of the graph
       { id: "INICIO_TRAMO_RE_MA", type: "station", x: 250, y: 750, width: 100, height: 60, label: "INICIO TRAMO RE-MA" },
@@ -700,7 +694,7 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
                 style={{
                   left: element.x,
                   top: element.y,
-                  width: element.width,
+                  width: element.width + 10,
                   height: element.height,
                   backgroundColor: color,
                   zIndex: getZIndex(element.type),
@@ -763,7 +757,7 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
                 borderRadius: getBorderRadius(element.type),
                 transform: element.rotate ? "rotate(-90deg)" : "none",
                 color: getTextColor(element.type),
-                fontSize: getFontSize(element.type),
+                fontSize: element.fontSize || getFontSize(element.type),
                 display: "flex",
                 alignItems: "center",
                 justifyContent: element.labelPosition === "start" ? "flex-start" : 
@@ -780,23 +774,57 @@ export default function RailwayGraph({ coloredElements }: RailwayGraphProps) {
         })}
 
         {/* Track crossings (X pattern) */}
+        {/* A130 */}
         <svg className="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
           {generateXCrossing(280, 312.5).map((path, index) => (
             <path key={`x1-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
+        {/* AQU102 */}
           {generateXCrossing(935, 312.5).map((path, index) => (
             <path key={`x2-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
-          {generateXCrossing(1275, 312.5).map((path, index) => (
+        {/* AQU106 */}
+          {generateXCrossing(1320, 312.5).map((path, index) => (
             <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
-          {generateX1Crossing(2090, 312.5).map((path, index) => (
+        {/* AMV102 */}
+          {generateX1Crossing(2200, 312.5).map((path, index) => (
             <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
-          {generateX1Crossing(2750, 312.5).map((path, index) => (
+        {/* AMV104 */}
+          {generateX1Crossing(2845, 312.5).map((path, index) => (
               <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
             ))}
-          {generateX1Crossing(3635, 312.5).map((path, index) => (
+        {/* ACA102 */}
+          {generateX1Crossing(3835, 312.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* ARE102 */}
+        {generateX1Crossing(490, 732.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* AMA102 */}
+        {generateX1Crossing(1300, 732.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* ASF102 */}
+        {generateX1Crossing(2070, 732.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* AAL102 */}
+        {generateX1Crossing(2920, 732.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* ALC102 */}
+        {generateX1Crossing(380, 1312.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* AAL102 */}
+        {generateX1Crossing(1070, 1312.5).map((path, index) => (
+            <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
+          ))}
+        {/* AJI102 */}
+        {generateX1Crossing(1950, 1312.5).map((path, index) => (
             <path key={`x3-${index}`} d={path} stroke="white" strokeWidth="1" fill="none" />
           ))}
           {generateXCrossing(2335, 1312.5).map((path, index) => (
@@ -850,7 +878,7 @@ function getDefaultColor(type: string): string {
     case "energyBlock":
       return "#FF0000"
     default:
-      return "#CCCCCC"
+      return "#BBBBBB"
   }
 }
 

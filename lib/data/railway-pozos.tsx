@@ -7,39 +7,69 @@ interface Pozo {
 
 export const pozos: Pozo[] = [{
         id: "SE1",
-        x: 1535,
+        x: 1585,
         y: 100,
         label: "SE1"
     },
     {
         id: "PV1",
-        x: 1700,
+        x: 1750,
         y: 100,
         label: "PV1"
     },
     {
         id: "SE2",
-        x: 1810,
+        x: 1860,
         y: 100,
         label: "SE2"
     },
     {
         id: "SE3",
-        x: 2310,
+        x: 2410,
         y: 100,
         label: "SE3"
     },
     {
         id: "PV2",
-        x: 2475,
+        x: 2580,
         y: 100,
         label: "PV2"
     },
     {
-        id: "PV2 + SE4",
-        x: 2530,
+        id: "PB2 + SE4",
+        x: 2635,
         y: 100,
-        label: "PV2 + SE4"
+        label: "PB2 + SE4"
+    },
+    {
+        id: "PV3",
+        x: 3185,
+        y: 100,
+        label: "PV3"
+    },
+    {
+        id: "PB3",
+        x: 3240,
+        y: 100,
+        label: "PB3"
+    },
+    {
+        id: "SE5",
+        x: 3455,
+        y: 100,
+        label: "SE5"
+    },
+    {
+        id: "PV4 + PB4",
+        x: 3565,
+        y: 100,
+        label: "PV4 + PB4"
+    },
+    {
+        id: "SE6",
+        x: 3620,
+        y: 100,
+        label: "SE6"
     },
     //PART2
     {
@@ -129,49 +159,49 @@ export const pozos: Pozo[] = [{
     //PART3
     {
         id: "PV10",
-        x: 200,
+        x: 640,
         y: 1000,
         label: "PV10"
     },
     {
         id: "PV11 + PB10",
-        x: 200,
+        x: 870,
         y: 1000,
         label: "PV11 + PB10"
     },
     {
         id: "SE12 + PB11",
-        x: 200,
+        x: 1340,
         y: 1000,
         label: "SE12 + PB11"
     },
     {
         id: "PV12",
-        x: 200,
+        x: 1400,
         y: 1000,
         label: "PV12"
     },
     {
         id: "SE13 + PB12",
-        x: 200,
+        x: 1680,
         y: 1000,
         label: "SE13 + PB12"
     },
     {
         id: "PV13",
-        x: 200,
+        x: 1735,
         y: 1000,
         label: "PV13"
     },
     {
         id: "PV14 + PB13",
-        x: 200,
+        x: 2100,
         y: 1000,
         label: "PV14 + PB13"
     },
     {
         id: "SE14",
-        x: 200,
+        x: 3400,
         y: 1000,
         label: "SE14"
     },

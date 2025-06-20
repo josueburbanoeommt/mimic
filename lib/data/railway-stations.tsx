@@ -1,44 +1,48 @@
-interface Station {
+export interface Station {
     id: string;
     x: number;
     y: number;
     label: string;
+    width?: number;
+    height?: number;
+    fontSize?: number;
   }
 
 export const stations: Station[] = [
     {
         id: "INSTALACION",
-        x: 180,
+        x: 205,
         y: 100,
         label: "INSTALACIÓN\nTALLERES Y\nCOCHERAS"
     },
     {
-        id: "QUIUMBE",
+        id: "QUITUMBE",
         x: 1175,
         y: 100,
-        label: "QUIUMBE"
+        label: "QUITUMBE"
     },
     {
         id: "MORÁN VALVERDE",
-        x: 1960,
+        x: 1990,
         y: 100,
         label: "MORÁN VALDERDE"
     },
     {
         id: "SOLANDA",
-        x: 2960,
+        x: 3050,
         y: 100,
         label: "SOLANDA"
     },
     {
         id: "CARDENAL DE LA TORRE",
-        x: 3180,
+        x: 3320,
         y: 100,
-        label: "CARDENAL DE LA TORRE"
+        label: "CARDENAL DE LA TORRE",
+        width: 58.5
     },
     {
         id: "RECREO",
-        x: 3845,
+        x: 3980,
         y: 100,
         label: "RECREO"
     },
@@ -62,37 +66,37 @@ export const stations: Station[] = [
     },
     {
         id: "UNIVERSIDAD CENTRAL",
-        x: 300,
+        x: 280,
         y: 1000,
         label: "UNIVERSIDAD CENTRAL"
     },
     {
         id: "LA PRADERA",
-        x: 500,
+        x: 780,
         y: 1000,
         label: "LA PRADERA"
     },
     {
         id: "LA CAROLINA",
-        x: 800,
+        x: 1000,
         y: 1000,
         label: "LA CAROLINA"
     },
     {
         id: "IÑAQUITO",
-        x: 1150,
+        x: 1540,
         y: 1000,
         label: "IÑAQUITO"
     },
     {
         id: "JIPIJAPA",
-        x: 2000,
+        x: 1870,
         y: 1000,
         label: "JIPIJAPA"
     },
     {
         id: "EL LABRADOR",
-        x: 3000,
+        x: 2580,
         y: 1000,
         label: "EL LABRADOR"
     },
